@@ -6,6 +6,41 @@
     </head>
     
     <body>
-        <div>Hacer aca la pagina principal</div>
-    </body>
+    <head th:replace="layout/plantilla :: header">  
+
+    <div class="container mt-4">
+        <h1>Bienvenido al Sistema de Gestión</h1>
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Productos</h5>
+                        <p class="card-text">Gestiona el inventario de productos.</p>
+                        <a th:href="@{/productos}" class="btn btn-primary">Ir a Productos</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Ventas</h5>
+                        <p class="card-text">Registra y consulta ventas.</p>
+                        <a th:href="@{/ventas}" class="btn btn-primary">Ir a Ventas</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Clientes</h5>
+                        <p class="card-text">Administra los clientes.</p>
+                        <a th:href="@{/clientes}" class="btn btn-primary">Ir a Clientes</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+        <footer th:replace="layout/plantilla :: footer"> 
+</body>
 </html>
