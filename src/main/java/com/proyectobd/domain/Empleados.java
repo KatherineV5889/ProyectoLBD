@@ -1,30 +1,26 @@
-
 package com.proyectobd.domain;
-
-
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-
 @Entity
-@Table(name = "clientes")
-public class Clientes {
+@Table(name = "empleados")
+public class Empleados {
 
     @Id
     private Long id;
     private String nombre;
-    private String direccion;
+    private String puesto;
 
     // Constructor vacío
-    public Clientes() {}
+    public Empleados() {}
 
     // Constructor con parámetros
-    public Clientes(Long id, String nombre, String direccion) {
+    public Empleados(Long id, String nombre, String puesto) {
         this.id = id;
         this.nombre = nombre;
-        this.direccion = direccion;
+        this.puesto = puesto;
     }
 
     // Getters y Setters
@@ -44,11 +40,11 @@ public class Clientes {
         this.nombre = nombre;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public String getPuesto() {
+        return puesto;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setPuesto(String puesto) {
+        this.puesto = puesto;
     }
 }

@@ -1,10 +1,10 @@
 package com.proyectobd.dao;
 
-import com.proyectobd.domain.Clientes;
+import com.proyectobd.domain.Empleados;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ClientesDao extends JpaRepository<Clientes, Long> {
-    
+public interface EmpleadosDao extends JpaRepository<Empleados, Long> {
+   
 }
