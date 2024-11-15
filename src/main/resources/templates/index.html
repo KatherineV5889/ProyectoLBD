@@ -2,16 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
-    <head th:replace="layout/plantilla :: head">     
-    </head>
-    
-    <body>
-    <head th:replace="layout/plantilla :: header">  
+<head th:replace="layout/plantilla :: head">
+</head>
+
+<body>
+    <header th:replace="layout/plantilla :: header"></header>
 
     <div class="container mt-4">
         <h1>Bienvenido al Sistema de Gestión</h1>
         <div class="row mt-4">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Productos</h5>
@@ -20,7 +20,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Ventas</h5>
@@ -29,7 +29,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Clientes</h5>
@@ -38,9 +38,18 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Empleados</h5>
+                        <p class="card-text">Administra los empleados.</p>
+                        <a th:href="@{/empleados}" class="btn btn-primary">Ir a Empleados</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-        
-        <footer th:replace="layout/plantilla :: footer"> 
+
+    <footer th:replace="layout/plantilla :: footer"></footer>
 </body>
 </html>
