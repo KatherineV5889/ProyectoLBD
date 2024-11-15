@@ -1,8 +1,9 @@
 
 package com.proyectobd.service;
 
-import com.proyectobd.dao.VentasDAO;
+
 import com.proyectobd.domain.Ventas;
+import com.proyectobd.dao.VentasDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -12,21 +13,21 @@ import java.util.Optional;
 public class VentasService {
 
     @Autowired
-    private VentasDAO ventasDAO;
+    private VentasDao ventasDao;
 
     public List<Ventas> listarVentas() {
-        return ventasDAO.findAll();
+        return ventasDao.findAll();
     }
 
-    public Optional<Ventas> obtenerVentaPorId(Long id) {
-        return ventasDAO.findById(id);
+    public Optional<Ventas> obtenerVentasPorId(Long id) {
+        return ventasDao.findById(id);
     }
 
-    public Ventas guardarVenta(Ventas ventas) {
-        return ventasDAO.save(ventas);
+    public Ventas guardarVentas(Ventas ventas) {
+        return ventasDao.save(ventas);
     }
 
-    public void eliminarVenta(Long id) {
-        ventasDAO.deleteById(id);
+    public void eliminarVentas(Long id) {
+        ventasDao.deleteById(id);
     }
 }

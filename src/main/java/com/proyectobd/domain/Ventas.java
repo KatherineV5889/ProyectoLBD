@@ -5,21 +5,20 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import java.util.Date;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
-@Table(name = "VENTAS")
+@Table(name = "ventas")
 public class Ventas {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
     private Long clienteId;
     private Long productoId;
-    private int cantidad;
-    private double total;
-    private Date fecha;
+    private LocalDate fechaVenta;
+    private BigDecimal totalVenta;
 
     // Getters y Setters
     public Long getId() {
@@ -46,39 +45,19 @@ public class Ventas {
         this.productoId = productoId;
     }
 
-    public int getCantidad() {
-        return cantidad;
+    public LocalDate getFechaVenta() {
+        return fechaVenta;
     }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
+    public void setFechaVenta(LocalDate fechaVenta) {
+        this.fechaVenta = fechaVenta;
     }
 
-    public double getTotal() {
-        return total;
+    public BigDecimal getTotalVenta() {
+        return totalVenta;
     }
 
-    public void setTotal(double total) {
-        this.total = total;
-    }
-
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-
-    @Override
-    public String toString() {
-        return "Venta{" +
-                "id=" + id +
-                ", clienteId=" + clienteId +
-                ", productoId=" + productoId +
-                ", cantidad=" + cantidad +
-                ", total=" + total +
-                ", fecha=" + fecha +
-                '}';
+    public void setTotalVenta(BigDecimal totalVenta) {
+        this.totalVenta = totalVenta;
     }
 }
