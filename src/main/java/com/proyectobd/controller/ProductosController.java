@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class ProductosController {
     
-    @RequestMapping("/url")
+    @RequestMapping("/productos")
     public String page(Model model) {
         model.addAttribute("attribute", "value");
-        return "view.name";
+        return "productos";
     }
     
 }
