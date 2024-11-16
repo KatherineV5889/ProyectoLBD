@@ -2,54 +2,102 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
-<head th:replace="layout/plantilla :: head">
-</head>
+    <head th:replace="layout/plantilla :: head">
+    </head>
 
-<body>
-    <header th:replace="layout/plantilla :: header"></header>
+    <body>
+        <header th:replace="layout/plantilla :: header"></header>
 
-    <div class="container mt-4">
-        <h1>Bienvenido al Sistema de Gestión</h1>
-        <div class="row mt-4">
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Productos</h5>
-                        <p class="card-text">Gestiona el inventario de productos.</p>
-                        <a th:href="@{/productos}" class="btn btn-primary">Ir a Productos</a>
+        <div class="container mt-4">
+            <h1>Bienvenido al Sistema de Gestión</h1>
+            <div class="row mt-4">
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Productos</h5>
+                            <p class="card-text">Gestiona el inventario de productos.</p>
+                            <a th:href="@{/producto}" class="btn btn-primary">Ir a Productos</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Ventas</h5>
+                            <p class="card-text">Registra y consulta ventas.</p>
+                            <a th:href="@{/venta}" class="btn btn-primary">Ir a Ventas</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Clientes</h5>
+                            <p class="card-text">Administra los clientes.</p>
+                            <a th:href="@{/cliente}" class="btn btn-primary">Ir a Clientes</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Empleados</h5>
+                            <p class="card-text">Administra los empleados.</p>
+                            <a th:href="@{/empleado}" class="btn btn-primary">Ir a Empleados</a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Ventas</h5>
-                        <p class="card-text">Registra y consulta ventas.</p>
-                        <a th:href="@{/ventas}" class="btn btn-primary">Ir a Ventas</a>
+            <div class="row mt-4">
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Inventarios</h5>
+                            <p class="card-text">Controla los niveles de inventario.</p>
+                            <a th:href="@{/inventario}" class="btn btn-primary">Ir a Inventarios</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Tiendas</h5>
+                            <p class="card-text">Gestiona las tiendas físicas y online.</p>
+                            <a th:href="@{/tienda}" class="btn btn-primary">Ir a Tiendas</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Categorías</h5>
+                            <p class="card-text">Productos por categorías.</p>
+                            <a th:href="@{/categoria}" class="btn btn-primary">Ir a Categorías</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Pedidos</h5>
+                            <p class="card-text">Consulta y administra pedidos.</p>
+                            <a th:href="@{/pedido}" class="btn btn-primary">Ir a Pedidos</a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Clientes</h5>
-                        <p class="card-text">Administra los clientes.</p>
-                        <a th:href="@{/clientes}" class="btn btn-primary">Ir a Clientes</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Empleados</h5>
-                        <p class="card-text">Administra los empleados.</p>
-                        <a th:href="@{/empleados}" class="btn btn-primary">Ir a Empleados</a>
+            <div class="row mt-4">
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Proveedores</h5>
+                            <p class="card-text">Gestiona la lista de proveedores.</p>
+                            <a th:href="@{/proveedor}" class="btn btn-primary">Ir a Proveedores</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <footer th:replace="layout/plantilla :: footer"></footer>
-</body>
+        <footer th:replace="layout/plantilla :: footer"></footer>
+    </body>
 </html>

@@ -6,9 +6,34 @@
     </head>
     <body>
         <head th:replace="layout/plantilla :: header">
-
-
-
-        <footer th:replace="layout/plantilla :: footer">    
+            <div class="container mt-4">
+                <h1>Listado de Categorías</h1>
+                <div th:if="${not #lists.isEmpty(categorias)}">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nombre</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="categoria : ${categorias}">
+                                <td th:text="${categoria.idCategoria}"></td>
+                                <td th:text="${categoria.nombre}"></td>
+                                <td>
+                                    <a th:href="@{/categoria/editar/{id}(id=${categoria.idCategoria})}" class="btn btn-warning">Editar</a>
+                                    <a th:href="@{/categoria/eliminar/{id}(id=${categoria.idCategoria})}" class="btn btn-danger" onclick="return confirm('¿Estás seguro de eliminar esta categoría?')">Eliminar</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div th:if="${#lists.isEmpty(categorias)}">
+                    <p>No hay categorías disponibles.</p>
+                </div>
+                <a th:href="@{/categoria/agregar}" class="btn btn-primary">Agregar Categoría</a>
+            </div>
+    <footer th:replace="layout/plantilla :: footer">    
     </body>
 </html>
