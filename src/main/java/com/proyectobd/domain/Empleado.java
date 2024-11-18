@@ -3,14 +3,19 @@ package com.proyectobd.domain;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Column;
 
 @Entity
-@Table(name = "empleados")
+@Table(name = "empleados") 
 public class Empleado {
 
     @Id
     private Long id;
+
+    @Column(name = "nombre") 
     private String nombre;
+
+    @Column(name = "puesto") 
     private String puesto;
 
     // Constructor vacío
@@ -46,5 +51,14 @@ public class Empleado {
 
     public void setPuesto(String puesto) {
         this.puesto = puesto;
+    }
+
+    @Override
+    public String toString() {
+        return "Empleado{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", puesto='" + puesto + '\'' +
+                '}';
     }
 }

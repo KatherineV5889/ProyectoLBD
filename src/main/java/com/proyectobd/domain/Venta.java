@@ -1,5 +1,6 @@
 package com.proyectobd.domain;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,6 +20,18 @@ public class Venta {
     private Long productoId;
     private LocalDate fechaVenta;
     private BigDecimal totalVenta;
+
+    // Constructor vacío
+    public Venta() {}
+
+    // Constructor con parámetros
+    public Venta(Long id, Long clienteId, Long productoId, LocalDate fechaVenta, BigDecimal totalVenta) {
+        this.id = id;
+        this.clienteId = clienteId;
+        this.productoId = productoId;
+        this.fechaVenta = fechaVenta;
+        this.totalVenta = totalVenta;
+    }
 
     // Getters y Setters
     public Long getId() {
@@ -59,5 +72,16 @@ public class Venta {
 
     public void setTotalVenta(BigDecimal totalVenta) {
         this.totalVenta = totalVenta;
+    }
+
+    @Override
+    public String toString() {
+        return "Venta{" +
+                "id=" + id +
+                ", clienteId=" + clienteId +
+                ", productoId=" + productoId +
+                ", fechaVenta=" + fechaVenta +
+                ", totalVenta=" + totalVenta +
+                '}';
     }
 }
