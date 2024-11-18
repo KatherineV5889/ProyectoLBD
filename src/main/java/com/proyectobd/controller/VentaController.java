@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author Luis
  */
 @Controller
-public class ProductosController {
+public class VentaController {
     
-    @RequestMapping("/productos")
+    @RequestMapping("/ventas")
     public String page(Model model) {
         model.addAttribute("attribute", "value");
-        return "productos";
+        return "ventas";
     }
     
 }

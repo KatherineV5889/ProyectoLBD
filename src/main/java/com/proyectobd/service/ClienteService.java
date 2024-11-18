@@ -1,31 +1,31 @@
 package com.proyectobd.service;
 
-import com.proyectobd.dao.ClientesDao;
-import com.proyectobd.domain.Clientes;
+import com.proyectobd.domain.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import com.proyectobd.dao.ClienteDao;
 
 @Service
-public class ClientesService {
+public class ClienteService {
 
     @Autowired
-    private ClientesDao clientesDao;
+    private ClienteDao clientesDao;
 
     // Método para obtener todos los clientes
-    public List<Clientes> getAllClientes() {
+    public List<Cliente> getAllClientes() {
         return clientesDao.findAll();
     }
 
     // Método para obtener un cliente por ID
-    public Optional<Clientes> getClienteById(Long id) {
+    public Optional<Cliente> getClienteById(Long id) {
         return clientesDao.findById(id);
     }
 
     // Método para guardar un nuevo cliente o actualizar uno existente
-    public Clientes saveCliente(Clientes cliente) {
+    public Cliente saveCliente(Cliente cliente) {
         return clientesDao.save(cliente);
     }
 

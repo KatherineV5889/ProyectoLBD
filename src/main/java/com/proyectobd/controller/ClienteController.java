@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-public class EmpleadosController {
+public class ClienteController {
     
-    @RequestMapping("/empleados")
+    @RequestMapping("/clientes")
     public String page(Model model) {
         model.addAttribute("attribute", "value");
-        return "empleados";
+        return "clientes";
     }
     
 }

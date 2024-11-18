@@ -1,31 +1,31 @@
 package com.proyectobd.service;
 
-import com.proyectobd.dao.ProductosDao;
-import com.proyectobd.domain.Productos;
+import com.proyectobd.domain.Producto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import com.proyectobd.dao.ProductoDao;
 
 @Service
-public class ProductosService {
+public class ProductoService {
 
     @Autowired
-    private ProductosDao productosDao;
+    private ProductoDao productosDao;
 
     // Método para obtener todos los productos
-    public List<Productos> getAllProductos() {
+    public List<Producto> getAllProductos() {
         return productosDao.findAll();
     }
 
     // Método para obtener un producto por ID
-    public Optional<Productos> getProductoById(Long id) {
+    public Optional<Producto> getProductoById(Long id) {
         return productosDao.findById(id);
     }
 
     // Método para guardar un nuevo producto o actualizar uno existente
-    public Productos saveProducto(Productos producto) {
+    public Producto saveProducto(Producto producto) {
         return productosDao.save(producto);
     }
 

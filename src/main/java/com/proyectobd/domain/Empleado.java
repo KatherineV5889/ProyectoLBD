@@ -6,7 +6,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "empleados")
-public class Empleados {
+public class Empleado {
 
     @Id
     private Long id;
@@ -14,10 +14,10 @@ public class Empleados {
     private String puesto;
 
     // Constructor vacío
-    public Empleados() {}
+    public Empleado() {}
 
     // Constructor con parámetros
-    public Empleados(Long id, String nombre, String puesto) {
+    public Empleado(Long id, String nombre, String puesto) {
         this.id = id;
         this.nombre = nombre;
         this.puesto = puesto;

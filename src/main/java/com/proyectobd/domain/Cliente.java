@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "clientes")
-public class Clientes {
+public class Cliente {
 
     @Id
     private Long id;
@@ -18,10 +18,10 @@ public class Clientes {
     private String direccion;
 
     // Constructor vacío
-    public Clientes() {}
+    public Cliente() {}
 
     // Constructor con parámetros
-    public Clientes(Long id, String nombre, String direccion) {
+    public Cliente(Long id, String nombre, String direccion) {
         this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;

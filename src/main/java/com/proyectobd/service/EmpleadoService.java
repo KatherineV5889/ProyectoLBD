@@ -1,31 +1,31 @@
 package com.proyectobd.service;
 
-import com.proyectobd.dao.EmpleadosDao;
-import com.proyectobd.domain.Empleados;
+import com.proyectobd.domain.Empleado;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import com.proyectobd.dao.EmpleadoDao;
 
 @Service
-public class EmpleadosService {
+public class EmpleadoService {
 
     @Autowired
-    private EmpleadosDao empleadosDao;
+    private EmpleadoDao empleadosDao;
 
     // Método para obtener todos los empleados
-    public List<Empleados> getAllEmpleados() {
+    public List<Empleado> getAllEmpleados() {
         return empleadosDao.findAll();
     }
 
     // Método para obtener un empleado por ID
-    public Optional<Empleados> getEmpleadoById(Long id) {
+    public Optional<Empleado> getEmpleadoById(Long id) {
         return empleadosDao.findById(id);
     }
 
     // Método para guardar un nuevo empleado o actualizar uno existente
-    public Empleados saveEmpleado(Empleados empleado) {
+    public Empleado saveEmpleado(Empleado empleado) {
         return empleadosDao.save(empleado);
     }
 
