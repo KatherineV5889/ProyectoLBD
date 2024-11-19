@@ -21,8 +21,8 @@ public class CategoriaController {
     
     @GetMapping
     public String listarCategorias(Model model) {
-        List<Categoria> categorias = categoriaService.findAll();
-        model.addAttribute("categorias", categorias); 
+        List<Categoria> categorias = categoriaService.findAll();       
+        model.addAttribute("categorias", categorias != null ? categorias : List.of()); 
         return "categoria/categoria";
     }
 
@@ -47,7 +47,7 @@ public class CategoriaController {
         return "redirect:/categoria";
     }
 
-    @PostMapping("/eliminar/{id}")
+    @GetMapping("/eliminar/{id}")
     public String eliminarCategoria(@PathVariable("id") Long id) {
         categoriaService.eliminarCategoria(id);
         return "redirect:/categoria";
