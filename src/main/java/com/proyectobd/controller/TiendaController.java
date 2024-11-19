@@ -47,7 +47,7 @@ public class TiendaController {
         return "redirect:/tienda";
     }
 
-    @PostMapping("/eliminar/{id}")
+    @GetMapping("/eliminar/{id}")
     public String eliminarTienda(@PathVariable("id") Long id) {
         tiendaService.eliminarTienda(id);
         return "redirect:/tienda";

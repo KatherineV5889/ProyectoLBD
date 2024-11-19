@@ -6,9 +6,39 @@
     </head>
     <body>
         <head th:replace="layout/plantilla :: header">
-
-
-
+            <div class="container mt-4">
+                <h1>Tiendas</h1>
+                <div th:if="${not #lists.isEmpty(tiendas)}">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nombre</th>
+                                 <th>Direccion</th>
+                                  <th>Ciudad</th>
+                                <th>Acciones</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="tienda : ${tiendas}">
+                                <td th:text="${tienda.idTienda}"></td>
+                                <td th:text="${tienda.nombre}"></td>
+                                <td th:text="${tienda.direccion}"></td>
+                                <td th:text="${tienda.ciudad}"></td>
+                                <td>
+                                    <a th:href="@{/tienda/editar/{id}(id=${tienda.idTienda})}" class="btn btn-warning">Editar</a>
+                                    <a th:href="@{/tienda/eliminar/{id}(id=${tienda.idTienda})}" class="btn btn-danger" onclick="return confirm('¿Estás seguro de eliminar esta Tienda?')">Eliminar</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div th:if="${#lists.isEmpty(tiendas)}">
+                    <p>No hay tiendas creadas.</p>
+                </div>
+                <a th:href="@{/tienda/agregar}" class="btn btn-primary">Agregar Tienda</a>
+            </div>
         <footer th:replace="layout/plantilla :: footer">    
     </body>
 </html>
