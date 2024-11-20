@@ -1,62 +1,38 @@
 package com.proyectobd.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import java.io.Serializable;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "productos")
-public class Producto {
+public class Producto implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "id_producto")
+    private Long idProducto;
+
+    @ManyToOne
+    @JoinColumn(name = "id_categoria")
+    private Categoria categoria;
+
     private String nombre;
-    private Double precio;
+    private Double precioProducto;
+    private Integer stockProducto;
+    private String descripcion;
 
-    // Constructor vacío
-    public Producto() {}
+    public Producto() {
+    }
 
-    // Constructor con parámetros
-    public Producto(Long id, String nombre, Double precio) {
-        this.id = id;
+    public Producto(Categoria categoria, String nombre, Double precioProducto, Integer stockProducto, String descripcion) {
+        this.categoria = categoria;
         this.nombre = nombre;
-        this.precio = precio;
-    }
-
-    // Getters y Setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public Double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(Double precio) {
-        this.precio = precio;
-    }
-
-    @Override
-    public String toString() {
-        return "Producto{" +
-               "id=" + id +
-               ", nombre='" + nombre + '\'' +
-               ", precio=" + precio +
-               '}';
+        this.precioProducto = precioProducto;
+        this.stockProducto = stockProducto;
+        this.descripcion = descripcion;
     }
 }

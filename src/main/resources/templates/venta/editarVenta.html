@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Venta</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Editar Venta</h1>
+        <form th:action="@{/venta/guardar}" method="post">
+            <input type="hidden" name="idVentas" th:value="${venta.idVentas}">
+            <div class="mb-3">
+                <label for="cliente" class="form-label">Cliente:</label>
+                <select name="idCliente" id="cliente" class="form-control" required>
+                    <th:block th:each="cliente : ${clientes}">
+                        <option th:value="${cliente.idCliente}" th:text="${cliente.nombre}" 
+                            th:checked="${venta.idCliente == cliente.idCliente}"></option>
+                    </th:block>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="empleado" class="form-label">Empleado:</label>
+                <select name="idEmpleado" id="empleado" class="form-control" required>
+                    <th:block th:each="empleado : ${empleados}">
+                        <option th:value="${empleado.idEmpleado}" th:text="${empleado.nombre}" 
+                            th:checked="${venta.idEmpleado == empleado.idEmpleado}"></option>
+                    </th:block>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="cantidad" class="form-label">Cantidad:</label>
+                <input type="number" class="form-control" id="cantidad" name="cantidad" th:value="${venta.cantidad}" required>
+            </div>
+            <div class="mb-3">
+                <label for="total" class="form-label">Total:</label>
+                <input type="number" step="0.01" class="form-control" id="total" name="total" th:value="${venta.total}" required>
+            </div>
+            <button type="submit" class="btn btn-success">
+                <i class="fas fa-save"></i> Actualizar
+            </button>
+            <a href="/venta" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Cancelar
+            </a>
+        </form>
+    </div>
+</body>
+</html>

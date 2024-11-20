@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Agregar Empleado</title>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+<div class="container mt-4">
+    <h1>Agregar Empleado</h1>
+    <form th:action="@{/empleado/guardar}" th:object="${empleado}" method="post">
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" th:field="*{nombre}" class="form-control" required/>
+        </div>
+        <div class="form-group">
+            <label for="apellido">Apellido</label>
+            <input type="text" id="apellido" th:field="*{apellido}" class="form-control" required/>
+        </div>
+        <div class="form-group">
+            <label for="puesto">Puesto</label>
+            <input type="text" id="puesto" th:field="*{puesto}" class="form-control" required/>
+        </div>
+        <div class="form-group">
+            <label for="tienda">Tienda</label>
+            <select id="tienda" th:field="*{tienda.idTienda}" class="form-control">
+                <option th:each="tienda : ${tiendas}" th:value="${tienda.idTienda}" th:text="${tienda.nombre}"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Guardar</button>
+        <a th:href="@{/empleado}" class="btn btn-secondary mt-2">Cancelar</a>
+    </form>
+</div>
+</body>
+</html>
+
+

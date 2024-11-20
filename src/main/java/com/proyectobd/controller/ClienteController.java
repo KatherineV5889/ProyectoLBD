@@ -43,7 +43,6 @@ public class ClienteController {
     @PostMapping("/guardar")
     public String guardarCliente(@ModelAttribute("cliente") Cliente cliente) {
         clienteService.save(cliente);
-        System.out.println(cliente.toString());
         return "redirect:/cliente";
     }
 
@@ -53,3 +52,4 @@ public class ClienteController {
         return "redirect:/cliente";
     }
 }
+

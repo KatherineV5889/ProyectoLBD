@@ -1,41 +1,45 @@
-
 package com.proyectobd.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.Column;
+import jakarta.persistence.*;
+import java.io.Serializable;
 
 @Entity
-@Table(name = "clientes") 
-public class Cliente {
+@Table(name = "clientes")
+public class Cliente implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_cliente")
+    private Long idCliente;
 
-    @Column(name = "nombre") 
+    @Column(name = "nombre", nullable = false, length = 100)
     private String nombre;
 
-    @Column(name = "direccion")
+    @Column(name = "apellido", nullable = false, length = 100)
+    private String apellido;
+
+    @Column(name = "direccion", length = 200)
     private String direccion;
 
     // Constructor vacío
     public Cliente() {}
 
     // Constructor con parámetros
-    public Cliente(Long id, String nombre, String direccion) {
-        this.id = id;
+    public Cliente(String nombre, String apellido, String direccion) {
         this.nombre = nombre;
+        this.apellido = apellido;
         this.direccion = direccion;
     }
 
     // Getters y Setters
-    public Long getId() {
-        return id;
+    public Long getIdCliente() {
+        return idCliente;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdCliente(Long idCliente) {
+        this.idCliente = idCliente;
     }
 
     public String getNombre() {
@@ -44,6 +48,14 @@ public class Cliente {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public String getDireccion() {
@@ -57,8 +69,9 @@ public class Cliente {
     @Override
     public String toString() {
         return "Cliente{" +
-                "id=" + id +
+                "idCliente=" + idCliente +
                 ", nombre='" + nombre + '\'' +
+                ", apellido='" + apellido + '\'' +
                 ", direccion='" + direccion + '\'' +
                 '}';
     }

@@ -1,14 +1,36 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
-    <head th:replace="layout/plantilla :: head">     
-    </head>
-    <body>
-        <head th:replace="layout/plantilla :: header">
-
-
-
-            <footer th:replace="layout/plantilla :: footer">    
-                </body>
-                </html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Empleados</title>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+<div class="container mt-4">
+    <h1>Listado de Empleados</h1>
+    <a th:href="@{/empleado/agregar}" class="btn btn-primary mb-3">Agregar Empleado</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Puesto</th>
+                <th>Tienda</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="empleado : ${empleados}">
+                <td th:text="${empleado.nombre}"></td>
+                <td th:text="${empleado.apellido}"></td>
+                <td th:text="${empleado.puesto}"></td>
+                <td th:text="${empleado.tienda.nombre}"></td>
+                <td>
+                    <a th:href="@{/empleado/editar/{id}(id=${empleado.idEmpleados})}" class="btn btn-warning btn-sm">Editar</a>
+                    <a th:href="@{/empleado/eliminar/{id}(id=${empleado.idEmpleados})}" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

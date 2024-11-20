@@ -26,7 +26,7 @@ public class ProyectConfig implements WebMvcConfigurer {
         return slr;
     }
 
-    //Bean para poder acceder a los Messages.properties en código Java...
+    
     @Bean("messageSource")
     public MessageSource messageSource() {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
@@ -36,4 +36,3 @@ public class ProyectConfig implements WebMvcConfigurer {
     }
 
 }
-/*Esto no se si es necesario, hay que quitar varios imports sin uso*/

@@ -1,13 +1,7 @@
 package com.proyectobd.domain;
 
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import java.math.BigDecimal;
-import java.time.LocalDate;
+import jakarta.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "ventas")
@@ -15,73 +9,97 @@ public class Venta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Long clienteId;
-    private Long productoId;
-    private LocalDate fechaVenta;
-    private BigDecimal totalVenta;
+    @Column(name = "ID_VENTAS")
+    private Long idVentas;
 
-    // Constructor vacío
-    public Venta() {}
+    @ManyToOne
+    @JoinColumn(name = "ID_CLIENTE", referencedColumnName = "ID_CLIENTE")
+    private Cliente cliente;
 
-    // Constructor con parámetros
-    public Venta(Long id, Long clienteId, Long productoId, LocalDate fechaVenta, BigDecimal totalVenta) {
-        this.id = id;
-        this.clienteId = clienteId;
-        this.productoId = productoId;
-        this.fechaVenta = fechaVenta;
-        this.totalVenta = totalVenta;
+    @ManyToOne
+    @JoinColumn(name = "ID_EMPLEADO", referencedColumnName = "ID_EMPLEADOS")
+    private Empleado empleado;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_PRODUCTO", referencedColumnName = "ID_PRODUCTO")
+    private Producto producto;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_TIENDA", referencedColumnName = "ID_TIENDA")
+    private Tienda tienda;
+
+    @Column(name = "FECHA")
+    @Temporal(TemporalType.DATE)
+    private Date fecha;
+
+    @Column(name = "CANTIDAD")
+    private Integer cantidad;
+
+    @Column(name = "TOTAL")
+    private Double total;
+
+    public Long getIdVentas() {
+        return idVentas;
     }
 
-    // Getters y Setters
-    public Long getId() {
-        return id;
+    public void setIdVentas(Long idVentas) {
+        this.idVentas = idVentas;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public Long getClienteId() {
-        return clienteId;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
-    public void setClienteId(Long clienteId) {
-        this.clienteId = clienteId;
+    public Empleado getEmpleado() {
+        return empleado;
     }
 
-    public Long getProductoId() {
-        return productoId;
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
     }
 
-    public void setProductoId(Long productoId) {
-        this.productoId = productoId;
+    public Producto getProducto() {
+        return producto;
     }
 
-    public LocalDate getFechaVenta() {
-        return fechaVenta;
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 
-    public void setFechaVenta(LocalDate fechaVenta) {
-        this.fechaVenta = fechaVenta;
+    public Tienda getTienda() {
+        return tienda;
     }
 
-    public BigDecimal getTotalVenta() {
-        return totalVenta;
+    public void setTienda(Tienda tienda) {
+        this.tienda = tienda;
     }
 
-    public void setTotalVenta(BigDecimal totalVenta) {
-        this.totalVenta = totalVenta;
+    public Date getFecha() {
+        return fecha;
     }
 
-    @Override
-    public String toString() {
-        return "Venta{" +
-                "id=" + id +
-                ", clienteId=" + clienteId +
-                ", productoId=" + productoId +
-                ", fechaVenta=" + fechaVenta +
-                ", totalVenta=" + totalVenta +
-                '}';
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public Integer getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public Double getTotal() {
+        return total;
+    }
+
+    public void setTotal(Double total) {
+        this.total = total;
     }
 }
+
