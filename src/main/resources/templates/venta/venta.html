@@ -23,14 +23,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="venta : ${ventas}">
+                   <tr th:each="venta : ${ventas}">//
                         <td th:text="${venta.idVentas}"></td>
                         <td th:text="${venta.cliente.nombre}"></td>
                         <td th:text="${venta.empleado.nombre}"></td>
                         <td th:text="${venta.producto.nombre}"></td>
                         <td th:text="${venta.cantidad}"></td>
                         <td th:text="${venta.total}"></td>
-                        <td>
+                      <td>
                             <a th:href="@{/venta/editar/{id}(id=${venta.idVentas})}" class="btn btn-warning btn-sm me-1">
                                 <i class="fas fa-edit"></i> Editar
                             </a>

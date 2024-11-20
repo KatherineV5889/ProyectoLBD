@@ -14,32 +14,30 @@ public class Cliente implements Serializable {
     @Column(name = "id_cliente")
     private Long idCliente;
 
-    @Column(name = "nombre", nullable = false, length = 100)
+    @Column(name = "nombre")
     private String nombre;
 
-    @Column(name = "apellido", nullable = false, length = 100)
+    @Column(name = "apellido")
     private String apellido;
+    
+       @Column(name = "email")
+    private String email;
 
-    @Column(name = "direccion", length = 200)
+    @Column(name = "telefono")
+    private String telefono;
+        
+    @Column(name = "direccion")
     private String direccion;
 
-    // Constructor vacío
+   
     public Cliente() {}
 
-    // Constructor con parámetros
-    public Cliente(String nombre, String apellido, String direccion) {
+    public Cliente(String nombre, String apellido, String email, String telefono, String direccion) {
         this.nombre = nombre;
         this.apellido = apellido;
+        this.email = email;
+        this.telefono = telefono;
         this.direccion = direccion;
-    }
-
-    // Getters y Setters
-    public Long getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(Long idCliente) {
-        this.idCliente = idCliente;
     }
 
     public String getNombre() {
@@ -58,6 +56,22 @@ public class Cliente implements Serializable {
         this.apellido = apellido;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
     public String getDireccion() {
         return direccion;
     }
@@ -65,14 +79,5 @@ public class Cliente implements Serializable {
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-
-    @Override
-    public String toString() {
-        return "Cliente{" +
-                "idCliente=" + idCliente +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", direccion='" + direccion + '\'' +
-                '}';
-    }
+    
 }

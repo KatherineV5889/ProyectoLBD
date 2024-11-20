@@ -46,10 +46,14 @@ public class ClienteController {
         return "redirect:/cliente";
     }
 
-    @PostMapping("/eliminar/{id}")
-    public String eliminarCliente(@PathVariable("id") Long id) {
-        clienteService.eliminarCliente(id);
-        return "redirect:/cliente";
-    }
+  @GetMapping("/eliminar/{id}")
+public String eliminarCliente(@PathVariable("id") Long id) {
+    clienteService.eliminarCliente(id);
+    return "redirect:/cliente"; 
+        
+        }
 }
+
+
+
 
