@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Categoría</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Editar Proveedor</h1>
+        <form th:action="@{/proveedor/guardar}" method="post" class="mt-4">
+            <input type="hidden" name="idProveedor" th:value="${proveedor.idProveedor}">
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" th:value="${proveedor.nombre}" required>
+                <label for="descripcion" class="form-label">Descripcion</label>
+                <input type="text" class="form-control" id="descripcion" name="descripcion" th:value="${proveedor.descripcion}" required>
+                <label for="ciudad" class="form-label">Ciudad</label>
+                <input type="text" class="form-control" id="ciudad" name="ciudad" th:value="${proveedor.ciudad}" required>
+                <label for="telefono" class="form-label">Telefono</label>
+                <input type="text" class="form-control" id="telefono" name="telefono" th:value="${proveedor.telefono}" required>
+            </div>
+            <button type="submit" class="btn btn-success">Actualizar</button>
+            <a href="/proveedor" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</body>
+</html>

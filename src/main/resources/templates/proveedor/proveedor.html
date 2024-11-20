@@ -6,9 +6,40 @@
     </head>
     <body>
         <head th:replace="layout/plantilla :: header">
-
-
-
-        <footer th:replace="layout/plantilla :: footer">    
+            <div class="container mt-4">
+                <h1>Listado de Proveedores</h1>
+                <div th:if="${not #lists.isEmpty(proveedores)}">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nombre</th>
+                                <th>Descipcion</th>
+                                <th>Ciudad</th>
+                                <th>Telefono</th>
+                                <th>Acciones</th>                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="proveedor : ${proveedores}">
+                                <td th:text="${proveedor.idProveedor}"></td>
+                                <td th:text="${proveedor.nombre}"></td>
+                                <td th:text="${proveedor.descripcion}"></td>
+                                <td th:text="${proveedor.ciudad}"></td>
+                                <td th:text="${proveedor.telefono}"></td>
+                                <td>
+                                    <a th:href="@{/proveedor/editar/{id}(id=${proveedor.idProveedor})}" class="btn btn-warning">Editar</a>
+                                    <a th:href="@{/proveedor/eliminar/{id}(id=${proveedor.idProveedor})}" class="btn btn-danger" onclick="return confirm('¿Estás seguro de eliminar este proveedor?')">Eliminar</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div th:if="${#lists.isEmpty(proveedores)}">
+                    <p>No hay proveedores disponibles.</p>
+                </div>
+                <a th:href="@{/proveedor/agregar}" class="btn btn-primary">Agregar Proveedor</a>
+            </div>
+    <footer th:replace="layout/plantilla :: footer">
     </body>
 </html>
