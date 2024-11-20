@@ -48,7 +48,7 @@ public class PedidoController {
         return "redirect:/pedido";
     }
 
-    @PostMapping("/eliminar/{id}")
+    @GetMapping("/eliminar/{id}")
     public String eliminarPedido(@PathVariable("id") Long id) {
         pedidoService.eliminarPedido(id);
         return "redirect:/pedido";

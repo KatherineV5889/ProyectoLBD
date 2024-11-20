@@ -8,7 +8,7 @@
         <head th:replace="layout/plantilla :: header">
             <div class="container mt-4">
                 <h1>Listado de Clientes</h1>
-                <div th:if="${not #lists.isEmpty(cliente)}">
+                <div th:if="${not #lists.isEmpty(clientes)}">
                     <table class="table">
                         <thead>
                             <tr>
@@ -29,7 +29,6 @@
                                 <td th:text="${cliente.email}"></td>
                                 <td th:text="${cliente.telefono}"></td>
                                 <td th:text="${cliente.direccion}"></td>
-
                                 <td>
                                     <a th:href="@{/cliente/editar/{id}(id=${cliente.idCliente})}" class="btn btn-warning">Editar</a>
                                     <a th:href="@{/cliente/eliminar/{id}(id=${cliente.idCliente})}" class="btn btn-danger" onclick="return confirm('¿Estás seguro de eliminar este cliente?')">Eliminar</a>
