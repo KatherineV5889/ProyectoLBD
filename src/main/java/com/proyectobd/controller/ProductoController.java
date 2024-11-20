@@ -2,17 +2,12 @@ package com.proyectobd.controller;
 
 import com.proyectobd.domain.Producto;
 import com.proyectobd.service.ProductoService;
-import com.proyectobd.domain.Categoria;
 import com.proyectobd.service.CategoriaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/producto")
@@ -22,7 +17,7 @@ public class ProductoController {
     private ProductoService productoService;
 
     @Autowired
-    private CategoriaService categoriaService;
+    private CategoriaService categoriaService; 
 
     @GetMapping
     public String listarProductos(Model model) {
@@ -34,18 +29,16 @@ public class ProductoController {
     @GetMapping("/agregar")
     public String mostrarFormularioAgregar(Model model) {
         Producto nuevoProducto = new Producto();
-        List<Categoria> categorias = categoriaService.findAll();
         model.addAttribute("producto", nuevoProducto);
-        model.addAttribute("categorias", categorias);
+        model.addAttribute("categorias", categoriaService.findAll()); 
         return "producto/agregarProducto";
     }
 
     @GetMapping("/editar/{id}")
     public String editarProducto(@PathVariable("id") Long id, Model model) {
         Producto producto = productoService.findById(id);
-        List<Categoria> categorias = categoriaService.findAll();
         model.addAttribute("producto", producto);
-        model.addAttribute("categorias", categorias);
+        model.addAttribute("categorias", categoriaService.findAll()); 
         return "producto/editarProducto";
     }
 
@@ -55,7 +48,7 @@ public class ProductoController {
         return "redirect:/producto";
     }
 
-    @PostMapping("/eliminar/{id}")
+    @GetMapping("/eliminar/{id}")
     public String eliminarProducto(@PathVariable("id") Long id) {
         productoService.eliminarProducto(id);
         return "redirect:/producto";

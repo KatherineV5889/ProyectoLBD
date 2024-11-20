@@ -28,5 +28,3 @@ public class ProductoService {
         productoDao.deleteById(id);
     }
 }
-
-

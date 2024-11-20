@@ -18,7 +18,7 @@ public class Empleado implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "id_tienda")
-    private Tienda tienda; // Relación con Tienda
+    private Tienda tienda; 
 
     private String nombre;
     private String apellido;

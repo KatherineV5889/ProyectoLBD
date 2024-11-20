@@ -17,7 +17,7 @@ public class EmpleadoController {
     private EmpleadoService empleadoService;
 
     @Autowired
-    private TiendaService tiendaService; // Para cargar las tiendas disponibles
+    private TiendaService tiendaService; 
 
     @GetMapping
     public String listarEmpleados(Model model) {
@@ -30,7 +30,7 @@ public class EmpleadoController {
     public String mostrarFormularioAgregar(Model model) {
         Empleado nuevoEmpleado = new Empleado();
         model.addAttribute("empleado", nuevoEmpleado);
-        model.addAttribute("tiendas", tiendaService.findAll()); // Listar tiendas disponibles
+        model.addAttribute("tiendas", tiendaService.findAll()); 
         return "empleado/agregarEmpleado";
     }
 
@@ -38,7 +38,7 @@ public class EmpleadoController {
     public String editarEmpleado(@PathVariable("id") Long id, Model model) {
         Empleado empleado = empleadoService.findById(id);
         model.addAttribute("empleado", empleado);
-        model.addAttribute("tiendas", tiendaService.findAll()); // Listar tiendas disponibles
+        model.addAttribute("tiendas", tiendaService.findAll()); 
         return "empleado/editarEmpleado";
     }
 

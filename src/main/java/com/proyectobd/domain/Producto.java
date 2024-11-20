@@ -18,7 +18,7 @@ public class Producto implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "id_categoria")
-    private Categoria categoria;
+    private Categoria categoria; 
 
     private String nombre;
     private Double precioProducto;
@@ -28,11 +28,11 @@ public class Producto implements Serializable {
     public Producto() {
     }
 
-    public Producto(Categoria categoria, String nombre, Double precioProducto, Integer stockProducto, String descripcion) {
-        this.categoria = categoria;
+    public Producto(String nombre, Double precioProducto, Integer stockProducto, String descripcion, Categoria categoria) {
         this.nombre = nombre;
         this.precioProducto = precioProducto;
         this.stockProducto = stockProducto;
         this.descripcion = descripcion;
+        this.categoria = categoria;
     }
 }
