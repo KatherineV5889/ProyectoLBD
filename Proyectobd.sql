@@ -46,7 +46,6 @@ CREATE TABLE productos (
 CREATE TABLE inventarios (
     id_inventario NUMBER(10) GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     id_tienda NUMBER(10),
-    id_producto NUMBER(10),
     total_productos NUMBER(10),
     FOREIGN KEY (id_producto) REFERENCES productos(id_producto),
     FOREIGN KEY (id_tienda) REFERENCES tiendas(id_tienda)
@@ -74,7 +73,6 @@ CREATE TABLE proveedor (
     descripcion VARCHAR2(200),
     ciudad VARCHAR2(100),
     telefono VARCHAR2(15),
-    id_tienda NUMBER(10),
     FOREIGN KEY (id_tienda) REFERENCES tiendas(id_tienda)
 );
 
