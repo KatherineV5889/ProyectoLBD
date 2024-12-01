@@ -6,9 +6,29 @@
     </head>
     <body>
         <head th:replace="layout/plantilla :: header">
-
-
-
-        <footer th:replace="layout/plantilla :: footer">    
-    </body>
-</html>
+            <div class="container mt-4">
+                <h1>Listado de Inventarios</h1>
+                <a th:href="@{/inventario/agregar}" class="btn btn-primary mb-3">Agregar Inventario</a>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Total de Productos</th>
+                            <th>Tienda</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="inventario : ${inventario}">
+                            <td th:text="${inventario.totalProductos}"></td>
+                            <td th:text="${inventario.tienda.nombre}"></td>
+                            <td>
+                                <a th:href="@{/inventario/editar/{id}(id=${inventario.idIventario})}" class="btn btn-warning btn-sm">Editar</a>
+                                <a th:href="@{/inventario/eliminar/{id}(id=${inventario.idIventario})}" class="btn btn-danger btn-sm">Eliminar</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <footer th:replace="layout/plantilla :: footer">    
+                </body>
+                </html>

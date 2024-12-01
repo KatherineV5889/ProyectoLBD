@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Agregar Inventario</title>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+<div class="container mt-4">
+    <h1>Agregar Inventario</h1>
+    <form th:action="@{/inventario/guardar}" th:object="${inventario}" method="post">
+        <div class="form-group">
+            <label for="totalProductos">Total Productos</label>
+            <input type="text" id="totalProductos" th:field="*{totalProductos}" class="form-control" required/>
+        </div>
+        <div class="form-group">
+            <label for="tienda">Tienda</label>
+            <select id="tienda" th:field="*{tienda.idTienda}" class="form-control">
+                <option th:each="tienda : ${tiendas}" th:value="${tienda.idTienda}" th:text="${tienda.nombre}"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Guardar</button>
+        <a th:href="@{/inventario}" class="btn btn-secondary mt-2">Cancelar</a>
+    </form>
+</div>
+</body>
+</html>
