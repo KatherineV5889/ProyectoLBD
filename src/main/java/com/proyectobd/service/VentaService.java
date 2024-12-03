@@ -2,33 +2,29 @@ package com.proyectobd.service;
 
 import com.proyectobd.dao.VentaDao;
 import com.proyectobd.domain.Venta;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
-import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 @Service
 public class VentaService {
 
-    private final VentaDao ventaDao;
+    @Autowired
+    private VentaDao ventaDao;
 
-    public VentaService(VentaDao ventaDao) {
-        this.ventaDao = ventaDao;
-    }
-
-    public List<Venta> listarTodas() {
+    public List<Venta> findAll() {
         return ventaDao.findAll();
     }
 
-    public Optional<Venta> buscarPorId(Long id) {
-        return ventaDao.findById(id);
+    public Venta findById(Long id) {
+        return ventaDao.findById(id).orElse(null);
     }
 
-    public Venta guardar(Venta venta) {
-        return ventaDao.save(venta);
+    public void save(Venta venta) {
+        ventaDao.save(venta);
     }
 
-    public void eliminar(Long id) {
+    public void eliminarVenta(Long id) {
         ventaDao.deleteById(id);
     }
 }

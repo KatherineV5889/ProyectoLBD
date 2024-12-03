@@ -1,105 +1,52 @@
 package com.proyectobd.domain;
 
 import jakarta.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "ventas")
-public class Venta {
+public class Venta implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_VENTAS")
+    @Column(name = "id_ventas")
     private Long idVentas;
 
     @ManyToOne
-    @JoinColumn(name = "ID_CLIENTE", referencedColumnName = "ID_CLIENTE")
+    @JoinColumn(name = "id_cliente")
     private Cliente cliente;
 
     @ManyToOne
-    @JoinColumn(name = "ID_EMPLEADO", referencedColumnName = "ID_EMPLEADOS")
+    @JoinColumn(name = "id_empleado")
     private Empleado empleado;
 
     @ManyToOne
-    @JoinColumn(name = "ID_PRODUCTO", referencedColumnName = "ID_PRODUCTO")
+    @JoinColumn(name = "id_producto")
     private Producto producto;
 
     @ManyToOne
-    @JoinColumn(name = "ID_TIENDA", referencedColumnName = "ID_TIENDA")
+    @JoinColumn(name = "id_tienda")
     private Tienda tienda;
 
-    @Column(name = "FECHA")
-    @Temporal(TemporalType.DATE)
     private Date fecha;
-
-    @Column(name = "CANTIDAD")
     private Integer cantidad;
-
-    @Column(name = "TOTAL")
     private Double total;
 
-    public Long getIdVentas() {
-        return idVentas;
+    public Venta() {
     }
 
-    public void setIdVentas(Long idVentas) {
-        this.idVentas = idVentas;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
+    public Venta(Cliente cliente, Empleado empleado, Producto producto, Tienda tienda, Date fecha, Integer cantidad, Double total) {
         this.cliente = cliente;
-    }
-
-    public Empleado getEmpleado() {
-        return empleado;
-    }
-
-    public void setEmpleado(Empleado empleado) {
         this.empleado = empleado;
-    }
-
-    public Producto getProducto() {
-        return producto;
-    }
-
-    public void setProducto(Producto producto) {
         this.producto = producto;
-    }
-
-    public Tienda getTienda() {
-        return tienda;
-    }
-
-    public void setTienda(Tienda tienda) {
         this.tienda = tienda;
-    }
-
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
         this.fecha = fecha;
-    }
-
-    public Integer getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
-    }
-
-    public Double getTotal() {
-        return total;
-    }
-
-    public void setTotal(Double total) {
         this.total = total;
     }
 }
-

@@ -16,7 +16,7 @@
                 <select name="idCliente" id="cliente" class="form-control" required>
                     <th:block th:each="cliente : ${clientes}">
                         <option th:value="${cliente.idCliente}" th:text="${cliente.nombre}" 
-                            th:checked="${venta.idCliente == cliente.idCliente}"></option>
+                                th:selected="${venta.idCliente == cliente.idCliente}"></option>
                     </th:block>
                 </select>
             </div>
@@ -25,7 +25,7 @@
                 <select name="idEmpleado" id="empleado" class="form-control" required>
                     <th:block th:each="empleado : ${empleados}">
                         <option th:value="${empleado.idEmpleado}" th:text="${empleado.nombre}" 
-                            th:checked="${venta.idEmpleado == empleado.idEmpleado}"></option>
+                                th:selected="${venta.idEmpleado == empleado.idEmpleado}"></option>
                     </th:block>
                 </select>
             </div>
@@ -40,10 +40,11 @@
             <button type="submit" class="btn btn-success">
                 <i class="fas fa-save"></i> Actualizar
             </button>
-            <a href="/venta" class="btn btn-secondary">
+            <a th:href="@{/venta}" class="btn btn-secondary">
                 <i class="fas fa-arrow-left"></i> Cancelar
             </a>
         </form>
     </div>
 </body>
 </html>
+
