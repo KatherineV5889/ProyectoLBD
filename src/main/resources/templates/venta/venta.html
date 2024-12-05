@@ -7,6 +7,7 @@
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <head th:replace="layout/plantilla :: header">
     <div class="container mt-4">
         <h1 class="mb-4">Listado de Ventas</h1>
         <div th:if="${not #lists.isEmpty(ventas)}">
@@ -52,5 +53,6 @@
             <i class="fas fa-plus"></i> Agregar Venta
         </a>
     </div>
+    <footer th:replace="layout/plantilla :: footer">
 </body>
 </html>

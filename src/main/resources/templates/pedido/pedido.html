@@ -25,8 +25,9 @@
                                 <td th:text="${pedido.idPedido}"></td>
                                 <td th:text="${pedido.idProveedor}"></td>
                                 <td th:text="${#dates.format(pedido.fecha_pedido, 'yyyy-MM-dd'}"></td>
-                                <td th:text="${pedido.total}"></td>
-                                <td th:text="${pedido.idProductos}"></td>
+                                <td th:text="${pedido.total_unidades}"></td>
+                                <td th:text="${pedido.idProducto}"></td>
+                                <td th:text="${pedido.idTienda}"></td>
                                 <td>
                                     <a th:href="@{/pedido/editar/{id}(id=${pedido.idPedido})}" class="btn btn-warning">Editar</a>
                                     <a th:href="@{/pedido/eliminar/{id}(id=${pedido.idPedido})}" class="btn btn-danger" onclick="return confirm('¿Estás seguro de eliminar este pedido?')">Eliminar</a>

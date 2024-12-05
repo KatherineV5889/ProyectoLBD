@@ -25,19 +25,24 @@ public class Pedido implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date fecha_pedido;
     
-    private int total;
+    private int total_unidades;
     
     @ManyToOne
-    @JoinColumn(name = "id_productos")
-    private Producto producto;    
+    @JoinColumn(name = "id_producto")
+    private Producto producto;
+
+    @ManyToOne
+    @JoinColumn(name = "id_tienda")
+    private Tienda tienda;
+    
 
     public Pedido() {
     }
 
-    public Pedido(Proveedor proveedor, Date fecha_pedido, int total, Producto producto) {
+    public Pedido(Proveedor proveedor, Date fecha_pedido, int total_unidades, Producto producto) {
         this.proveedor = proveedor;
         this.fecha_pedido = fecha_pedido;
-        this.total = total;
+        this.total_unidades = total_unidades;
         this.producto = producto;
     }
     
@@ -66,11 +71,11 @@ public class Pedido implements Serializable {
     }
     
     public int getTotal() {
-        return total;
+        return total_unidades;
     }
 
-    public void setTotal(int total) {
-        this.total = total;
+    public void setTotal(int total_unidades) {
+        this.total_unidades = total_unidades;
     }
     public Producto getProducto() {
         return producto;

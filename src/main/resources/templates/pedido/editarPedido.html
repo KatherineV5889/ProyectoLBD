@@ -9,7 +9,6 @@
     <div class="container mt-5">
         <h1 class="text-center">Editar Pedido</h1>
         <form th:action="@{/pedido/guardar}" method="post" class="mt-4">
-            <!-- Hidden field for ID -->
             <input type="hidden" name="idPedido" th:value="${pedido.idPedido}">
 
             <div class="mb-3">
@@ -19,11 +18,15 @@
                 <label for="fechaPedido" class="form-label">Fecha de Pedido</label>
                 <input type="date" class="form-control" id="fechaPedido" name="fechaPedido" th:value="${pedido.fechaPedido}" required>
 
-                <label for="total" class="form-label">Total</label>
-                <input type="number" class="form-control" id="total" name="total" th:value="${pedido.total}" required>
+                <label for="total_unidades" class="form-label">Total</label>
+                <input type="number" class="form-control" id="total_unidades" name="total_unidades" th:value="${pedido.total_unidades}" required>
 
-                <label for="idProductos" class="form-label">ID Productos</label>
+                <label for="idProducto" class="form-label">ID Producto</label>
                 <input type="number" class="form-control" id="producto" name="producto" th:value="${pedido.producto}" required>
+                
+                <label for="idTienda" class="form-label">ID Tienda</label>
+                <input type="number" class="form-control" id="tienda" name="tienda" th:value="${pedido.tienda}" required>
+                
             </div>
             <button type="submit" class="btn btn-success">Actualizar</button>
             <a href="/pedido" class="btn btn-secondary">Cancelar</a>

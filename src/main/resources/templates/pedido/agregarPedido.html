@@ -16,11 +16,14 @@
                 <label for="fechaPedido" class="form-label">Fecha de Pedido</label>
                 <input type="date" class="form-control" id="fecha_pedido" name="fecha_pedido" th:value="${pedido.fecha_pedido}" required>
 
-                <label for="total" class="form-label">Total</label>
-                <input type="number" class="form-control" id="total" name="total" th:value="${pedido.total}" required>
+                <label for="total_unidades" class="form-label">Total</label>
+                <input type="number" class="form-control" id="total_unidades" name="total_unidades" th:value="${pedido.total_unidades}" required>
 
-                <label for="idProductos" class="form-label">ID Productos</label>
+                <label for="idProducto" class="form-label">ID Producto</label>
                 <input type="number" class="form-control" id="producto" name="producto" th:value="${pedido.producto}" required>
+                
+                <label for="idTienda" class="form-label">ID Tienda</label>
+                <input type="number" class="form-control" id="tienda" name="tienda" th:value="${pedido.tienda}" required>          
             </div>
             <button type="submit" class="btn btn-success">Guardar</button>
             <a href="/pedido" class="btn btn-secondary">Cancelar</a>
