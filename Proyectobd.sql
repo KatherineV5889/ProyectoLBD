@@ -151,13 +151,13 @@ CREATE GLOBAL TEMPORARY TABLE tabla_temporal_2 (
 ) ON COMMIT DELETE ROWS; 
 
 CREATE TABLE procesos (
-    id_proceso NUMBER PRIMARY KEY,           -- Identificador ˙nico del proceso
+    id_proceso NUMBER PRIMARY KEY,           -- Identificador √∫nico del proceso
     nombre_proceso VARCHAR2(100) NOT NULL,   -- Nombre del proceso
-    descripcion VARCHAR2(255),               -- DescripciÛn del proceso
-    estado VARCHAR2(50),                     -- Estado del proceso (ej. 'En ejecuciÛn', 'Completado')
+    descripcion VARCHAR2(255),               -- Descripci√≥n del proceso
+    estado VARCHAR2(50),                     -- Estado del proceso (ej. 'En ejecuci√≥n', 'Completado')
     fecha_inicio DATE DEFAULT SYSDATE,       -- Fecha y hora de inicio del proceso
-    fecha_fin DATE,                          -- Fecha y hora de finalizaciÛn del proceso
-    usuario_ejecucion VARCHAR2(100),         -- Usuario que ejecutÛ el proceso
+    fecha_fin DATE,                          -- Fecha y hora de finalizaci√≥n del proceso
+    usuario_ejecucion VARCHAR2(100),         -- Usuario que ejecut√≥ el proceso
     comentarios VARCHAR2(255)                -- Comentarios adicionales sobre el proceso
 );
 
@@ -252,19 +252,6 @@ LEFT JOIN ventas v ON t.id_tienda = v.id_tienda
 GROUP BY t.id_tienda, t.nombre, t.direccion, t.ciudad
 ORDER BY ingreso_total DESC;
 
-CREATE OR REPLACE VIEW productos_mas_vendidos AS
-SELECT 
-    p.id_producto,
-    p.nombre AS nombre_producto,
-    c.nombre AS categoria,
-    SUM(v.cantidad) AS cantidad_total_vendida,
-    SUM(v.total) AS ingreso_total
-FROM productos p
-JOIN categorias c ON p.id_categoria = c.id_categoria
-JOIN ventas v ON p.id_producto = v.id_producto
-GROUP BY p.id_producto, p.nombre, c.nombre
-ORDER BY cantidad_total_vendida DESC;
-
 CREATE OR REPLACE VIEW productos_sin_ventas AS
 SELECT 
     p.id_producto,
@@ -286,10 +273,10 @@ CREATE OR REPLACE PACKAGE gestionar_productos AS
     -- Procedimiento para actualizar el precio de un producto
     PROCEDURE actualizar_precio(p_id_producto NUMBER, nuevo_precio NUMBER);
 
-    -- FunciÛn para listar todos los productos
+    -- Funci√≥n para listar todos los productos
     FUNCTION listar_productos RETURN VARCHAR2;
 
-    -- FunciÛn para listar productos por proveedor
+    -- Funci√≥n para listar productos por proveedor
     FUNCTION listar_productos_por_proveedor(p_id_proveedor NUMBER) RETURN VARCHAR2;
 END gestionar_productos;
 /
@@ -304,7 +291,7 @@ CREATE OR REPLACE PACKAGE BODY gestionar_productos AS
         WHERE id_producto = p_id_producto;
     END actualizar_precio;
 
-    -- FunciÛn que lista todos los productos usando un cursor explÌcito
+    -- Funci√≥n que lista todos los productos usando un cursor expl√≠cito
     FUNCTION listar_productos RETURN VARCHAR2 IS
         CURSOR c_productos IS
             SELECT id_producto, nombre, precio_producto, stock_producto
@@ -330,7 +317,7 @@ CREATE OR REPLACE PACKAGE BODY gestionar_productos AS
         RETURN v_resultado;
     END listar_productos;
 
-    -- FunciÛn que lista productos de un proveedor especÌfico usando un cursor explÌcito
+    -- Funci√≥n que lista productos de un proveedor espec√≠fico usando un cursor expl√≠cito
     FUNCTION listar_productos_por_proveedor(p_id_proveedor NUMBER) RETURN VARCHAR2 IS
         CURSOR c_productos_proveedor IS
             SELECT id_producto, nombre, precio_producto, stock_producto
@@ -407,7 +394,7 @@ END gestionar_clientes;
 /
 
 CREATE OR REPLACE PACKAGE BODY gestionar_clientes AS
-    -- FunciÛn para obtener los datos del cliente
+    -- Funci√≥n para obtener los datos del cliente
     FUNCTION obtener_datos_cliente(p_id_cliente NUMBER) RETURN VARCHAR2 IS
         v_datos_cliente VARCHAR2(500);
     BEGIN
@@ -419,7 +406,7 @@ CREATE OR REPLACE PACKAGE BODY gestionar_clientes AS
         RETURN v_datos_cliente;
     END obtener_datos_cliente;
 
-    -- Procedimiento para actualizar la direcciÛn del cliente
+    -- Procedimiento para actualizar la direcci√≥n del cliente
     PROCEDURE actualizar_direccion(p_id_cliente NUMBER, nueva_direccion VARCHAR2) IS
     BEGIN
         UPDATE clientes
@@ -427,7 +414,7 @@ CREATE OR REPLACE PACKAGE BODY gestionar_clientes AS
         WHERE id_cliente = p_id_cliente;
     END actualizar_direccion;
 
-    -- FunciÛn para obtener el total de ventas de un cliente
+    -- Funci√≥n para obtener el total de ventas de un cliente
     FUNCTION obtener_total_ventas(p_id_cliente NUMBER) RETURN NUMBER IS
         v_total_ventas NUMBER;
     BEGIN
@@ -437,7 +424,7 @@ CREATE OR REPLACE PACKAGE BODY gestionar_clientes AS
         RETURN v_total_ventas;
     END obtener_total_ventas;
 
-    -- FunciÛn para obtener la ˙ltima venta de un cliente
+    -- Funci√≥n para obtener la √∫ltima venta de un cliente
     FUNCTION obtener_ultima_venta(p_id_cliente NUMBER) RETURN DATE IS
         v_ultima_venta DATE;
     BEGIN
@@ -449,7 +436,7 @@ CREATE OR REPLACE PACKAGE BODY gestionar_clientes AS
 
 
 
-    -- FunciÛn para listar clientes con ventas mayores a un monto
+    -- Funci√≥n para listar clientes con ventas mayores a un monto
     FUNCTION cur_listar_clientes_por_monto(p_monto_minimo NUMBER) RETURN SYS_REFCURSOR IS
         v_cursor SYS_REFCURSOR;
     BEGIN
@@ -489,16 +476,16 @@ DECLARE
     v_ultima_venta DATE;
 BEGIN
     v_ultima_venta := gestionar_clientes.obtener_ultima_venta(1); -- ID de cliente
-    DBMS_OUTPUT.PUT_LINE('⁄ltima venta realizada el: ' || TO_CHAR(v_ultima_venta, 'DD/MM/YYYY'));
+    DBMS_OUTPUT.PUT_LINE('√öltima venta realizada el: ' || TO_CHAR(v_ultima_venta, 'DD/MM/YYYY'));
 END;
 /
 
 
 --Procedimiento que nos ayuda a actualizar la dirreccion 
 BEGIN
-    -- Cambia el ID del cliente (ej. 1) y la nueva direcciÛn
+    -- Cambia el ID del cliente (ej. 1) y la nueva direcci√≥n
     gestionar_clientes.actualizar_direccion(1, 'Avenida 8'); 
-    DBMS_OUTPUT.PUT_LINE('DirecciÛn actualizada correctamente.');
+    DBMS_OUTPUT.PUT_LINE('Direcci√≥n actualizada correctamente.');
 END;
 /
 
@@ -566,7 +553,7 @@ END gestionar_ventas;
 /
 
 CREATE OR REPLACE PACKAGE BODY gestionar_ventas AS
-    -- FunciÛn para calcular el total de una venta
+    -- Funci√≥n para calcular el total de una venta
     FUNCTION calcular_total_venta(p_id_venta NUMBER) RETURN NUMBER IS
         v_total NUMBER;
     BEGIN
@@ -587,7 +574,7 @@ CREATE OR REPLACE PACKAGE BODY gestionar_ventas AS
         v_precio_producto NUMBER;
         v_total NUMBER;
         
-        -- Cursor explÌcito para obtener el precio del producto
+        -- Cursor expl√≠cito para obtener el precio del producto
         CURSOR c_producto_precio IS
             SELECT precio_producto
             FROM productos
@@ -626,11 +613,11 @@ CREATE OR REPLACE PACKAGE BODY gestionar_ventas AS
         WHERE id_producto = p_id_producto;
     END;
 
-    -- FunciÛn para obtener los detalles de una venta
+    -- Funci√≥n para obtener los detalles de una venta
     FUNCTION obtener_detalle_venta(p_id_venta NUMBER) RETURN SYS_REFCURSOR IS
         v_cursor SYS_REFCURSOR;
     BEGIN
-        -- Abrir el cursor explÌcito y retornarlo
+        -- Abrir el cursor expl√≠cito y retornarlo
         OPEN v_cursor FOR
             SELECT v.id_ventas, v.fecha, p.nombre, v.cantidad, v.total
             FROM ventas v
@@ -661,7 +648,7 @@ BEGIN
         p_cantidad       => 1      -- Cantidad de productos vendidos
     );
     
-    -- Usar el cursor explÌcito dentro del procedimiento para obtener el precio del producto
+    -- Usar el cursor expl√≠cito dentro del procedimiento para obtener el precio del producto
     FOR v_precio IN (SELECT precio_producto FROM productos WHERE id_producto = 303) LOOP
         v_precio_producto := v_precio.precio_producto;
         DBMS_OUTPUT.PUT_LINE('Precio del producto con ID 303: ' || v_precio_producto);
@@ -704,7 +691,7 @@ DECLARE
     v_cantidad NUMBER;
     v_total NUMBER;
 BEGIN
-    -- Llamada a la funciÛn para obtener el cursor con los detalles de la venta
+    -- Llamada a la funci√≥n para obtener el cursor con los detalles de la venta
     v_cursor := gestionar_ventas.obtener_detalle_venta(v_id_venta);
 
     -- Iterar sobre el cursor para obtener los detalles
@@ -758,7 +745,7 @@ CREATE OR REPLACE PACKAGE BODY gestionar_inventarios AS
         CURSOR c_inventarios IS
             SELECT id_tienda, total_productos
             FROM inventarios
-            WHERE total_productos < 60;  -- Cambia el umbral seg˙n sea necesario, ojo con esto se cambia para mostrar el procedimiento
+            WHERE total_productos < 60;  -- Cambia el umbral seg√∫n sea necesario, ojo con esto se cambia para mostrar el procedimiento
 
         v_inventario c_inventarios%ROWTYPE;  -- Variable para almacenar cada fila del cursor
     BEGIN
@@ -766,7 +753,7 @@ CREATE OR REPLACE PACKAGE BODY gestionar_inventarios AS
         LOOP
             FETCH c_inventarios INTO v_inventario;
             EXIT WHEN c_inventarios%NOTFOUND;
-            -- AquÌ puedes hacer algo con v_inventario, como imprimirlo
+            -- Aqu√≠ puedes hacer algo con v_inventario, como imprimirlo
             DBMS_OUTPUT.PUT_LINE('Tienda ID: ' || v_inventario.id_tienda || ' - Total Productos: ' || v_inventario.total_productos);
         END LOOP;
         CLOSE c_inventarios;
@@ -810,7 +797,7 @@ END;
 CREATE OR REPLACE PACKAGE gestionar_empleados AS
     FUNCTION obtener_empleado(p_id_empleado NUMBER) RETURN VARCHAR2;
     PROCEDURE asignar_empleado_tienda(p_id_empleado NUMBER, p_id_tienda NUMBER);
-    FUNCTION listar_nombres_empleados_tienda(p_id_tienda NUMBER) RETURN SYS_REFCURSOR;  -- Cambiado a funciÛn para devolver un cursor
+    FUNCTION listar_nombres_empleados_tienda(p_id_tienda NUMBER) RETURN SYS_REFCURSOR;  -- Cambiado a funci√≥n para devolver un cursor
 END gestionar_empleados;
 /
 
@@ -884,7 +871,7 @@ END;
 --Procedimiento gestionar empleados--
 BEGIN
     gestionar_empleados.asignar_empleado_tienda(1, 2);  -- Cambia 1 por el ID del empleado y 1 por el ID de la tienda
-    DBMS_OUTPUT.PUT_LINE('Empleado asignado a la tienda con Èxito.');
+    DBMS_OUTPUT.PUT_LINE('Empleado asignado a la tienda con √©xito.');
 EXCEPTION
     WHEN OTHERS THEN
         DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
@@ -896,7 +883,7 @@ Select * FROM empleados;
 CREATE OR REPLACE PACKAGE gestionar_proveedores AS
     FUNCTION obtener_info_proveedor(p_id_proveedor NUMBER) RETURN VARCHAR2;
     PROCEDURE actualizar_telefono_proveedor(p_id_proveedor NUMBER, p_nuevo_telefono VARCHAR2);
-    PROCEDURE listar_proveedores_por_ciudad(p_ciudad VARCHAR2); -- Agregar el procedimiento aquÌ
+    PROCEDURE listar_proveedores_por_ciudad(p_ciudad VARCHAR2); -- Agregar el procedimiento aqu√≠
 END gestionar_proveedores;
 /
 
@@ -936,7 +923,7 @@ CREATE OR REPLACE PACKAGE BODY gestionar_proveedores AS
             EXIT WHEN cur_proveedores%NOTFOUND;
             DBMS_OUTPUT.PUT_LINE('Proveedor ID: ' || v_proveedor.id_proveedor ||
                                  ', Nombre: ' || v_proveedor.nombre ||
-                                 ', TelÈfono: ' || v_proveedor.telefono);
+                                 ', Tel√©fono: ' || v_proveedor.telefono);
         END LOOP;
         CLOSE cur_proveedores;
     END;
@@ -949,15 +936,15 @@ DECLARE
     v_info VARCHAR2(200);
 BEGIN
     v_info := gestionar_proveedores.obtener_info_proveedor(1); -- Cambiar 1 por el ID del proveedor que necesitamos
-    DBMS_OUTPUT.PUT_LINE('InformaciÛn del proveedor: ' || v_info);
+    DBMS_OUTPUT.PUT_LINE('Informaci√≥n del proveedor: ' || v_info);
 END;
 /
 
 --Procedimiento para actualizar contacto --
 
 BEGIN
-    gestionar_proveedores.actualizar_telefono_proveedor(1, '89675412'); -- Cambiar ID y telÈfono
-    DBMS_OUTPUT.PUT_LINE('TelÈfono actualizado exitosamente.');
+    gestionar_proveedores.actualizar_telefono_proveedor(1, '89675412'); -- Cambiar ID y tel√©fono
+    DBMS_OUTPUT.PUT_LINE('Tel√©fono actualizado exitosamente.');
 EXCEPTION
     WHEN OTHERS THEN
         DBMS_OUTPUT.PUT_LINE('Error: ' || SQLERRM);
@@ -1055,7 +1042,7 @@ SELECT * FROM PEDIDOS;
 DECLARE
     v_total NUMBER;
 BEGIN
-    -- Llamada a la funciÛn para obtener el total de unidades de un pedido especÌfico
+    -- Llamada a la funci√≥n para obtener el total de unidades de un pedido espec√≠fico
     v_total := gestionar_pedidos.obtener_total_pedido(p_id_pedido => 2);
     
     -- Mostrar el resultado
@@ -1074,7 +1061,7 @@ DECLARE
     v_total_unidades NUMBER;
     v_id_productos NUMBER;
 BEGIN
-    -- Llamamos a la funciÛn que devuelve el cursor
+    -- Llamamos a la funci√≥n que devuelve el cursor
     v_cursor := gestionar_pedidos.listar_pedidos_recientes(30);
     
     -- Extraemos los resultados del cursor
@@ -1131,7 +1118,7 @@ CREATE OR REPLACE PACKAGE BODY tiendas_act AS
         VALUES (p_nombre, p_direccion, p_ciudad);
     END insertar_tienda;
 
-    -- Procedimiento para actualizar la direcciÛn de una tienda
+    -- Procedimiento para actualizar la direcci√≥n de una tienda
     PROCEDURE actualizar_direccion(
         p_id_tienda       IN NUMBER,
         p_nueva_direccion IN VARCHAR2
@@ -1142,7 +1129,7 @@ CREATE OR REPLACE PACKAGE BODY tiendas_act AS
         WHERE id_tienda = p_id_tienda;
     END actualizar_direccion;
 
-    -- FunciÛn para obtener el nombre de una tienda por ID
+    -- Funci√≥n para obtener el nombre de una tienda por ID
     FUNCTION obtener_nombre(
         p_id_tienda IN NUMBER
     ) RETURN VARCHAR2 IS
@@ -1158,7 +1145,7 @@ CREATE OR REPLACE PACKAGE BODY tiendas_act AS
             RETURN NULL;
     END obtener_nombre;
 
-    -- FunciÛn para contar el n˙mero de tiendas en una ciudad usando un cursor explÌcito
+    -- Funci√≥n para contar el n√∫mero de tiendas en una ciudad usando un cursor expl√≠cito
     FUNCTION contar_tiendas_ciudad(
         p_ciudad IN VARCHAR2
     ) RETURN NUMBER IS
@@ -1203,7 +1190,7 @@ DECLARE
     v_contador NUMBER;
 BEGIN
     v_contador := tiendas_act.contar_tiendas_ciudad(p_ciudad => 'Ciudad A');
-    DBMS_OUTPUT.PUT_LINE('N˙mero de tiendas en Ciudad A: ' || v_contador);
+    DBMS_OUTPUT.PUT_LINE('N√∫mero de tiendas en Ciudad A: ' || v_contador);
 END;
 
 
@@ -1212,7 +1199,7 @@ CREATE OR REPLACE PACKAGE analizar_ventas AS
     FUNCTION ventas_totales_tienda(p_id_tienda NUMBER) RETURN NUMBER;
     FUNCTION top_producto_vendido(p_id_tienda NUMBER) RETURN VARCHAR2;
     TYPE cursor_ventas IS REF CURSOR RETURN ventas%ROWTYPE; -- Declaramos un tipo de cursor
-    FUNCTION ventas_por_mes(p_fecha_inicio DATE) RETURN cursor_ventas; -- FunciÛn que devuelve un cursor
+    FUNCTION ventas_por_mes(p_fecha_inicio DATE) RETURN cursor_ventas; -- Funci√≥n que devuelve un cursor
 END analizar_ventas;
 /
 
@@ -1266,10 +1253,10 @@ END analizar_ventas;
 --Sirve para probar el total de ventas
 
 DECLARE
-    v_total NUMBER;         -- DeclaraciÛn de la variable para almacenar el total
-    p_id_tienda NUMBER := 1; -- DeclaraciÛn y asignaciÛn del ID de la tienda
+    v_total NUMBER;         -- Declaraci√≥n de la variable para almacenar el total
+    p_id_tienda NUMBER := 1; -- Declaraci√≥n y asignaci√≥n del ID de la tienda
 BEGIN
-    v_total := analizar_ventas.ventas_totales_tienda(p_id_tienda);  -- Llamada a la funciÛn
+    v_total := analizar_ventas.ventas_totales_tienda(p_id_tienda);  -- Llamada a la funci√≥n
     DBMS_OUTPUT.PUT_LINE('Ventas totales para la tienda ' || p_id_tienda || ': ' || v_total);
 END;
 /
@@ -1279,7 +1266,7 @@ DECLARE
     v_producto VARCHAR2(100);
 BEGIN
     v_producto := analizar_ventas.top_producto_vendido(1); -- Ojo el numero es el id de la tienda
-    DBMS_OUTPUT.PUT_LINE('Producto m·s vendido en la tienda 1: ' || v_producto);
+    DBMS_OUTPUT.PUT_LINE('Producto m√°s vendido en la tienda 1: ' || v_producto);
 END;
 /
 
@@ -1326,7 +1313,7 @@ END gestionar_categorias;
 
 CREATE OR REPLACE PACKAGE BODY gestionar_categorias AS
 
-    -- FunciÛn  usa cursor explÌcito
+    -- Funci√≥n  usa cursor expl√≠cito
     FUNCTION obtener_categoria(p_id_categoria NUMBER) RETURN VARCHAR2 IS
         v_categoria categorias.nombre%TYPE;
         CURSOR c_categoria IS
@@ -1344,12 +1331,12 @@ CREATE OR REPLACE PACKAGE BODY gestionar_categorias AS
             RETURN v_categoria;
         ELSE
             CLOSE c_categoria;  
-            RETURN 'CategorÌa no encontrada';  
+            RETURN 'Categor√≠a no encontrada';  
         END IF;
         
     EXCEPTION
         WHEN NO_DATA_FOUND THEN
-            RETURN 'CategorÌa no encontrada';  
+            RETURN 'Categor√≠a no encontrada';  
         WHEN OTHERS THEN
             RETURN 'Error inesperado: ' || SQLERRM;  
     END obtener_categoria;
@@ -1372,7 +1359,7 @@ DECLARE
     v_categoria_nombre VARCHAR2(100);
 BEGIN
     v_categoria_nombre := gestionar_categorias.obtener_categoria(22);
-    DBMS_OUTPUT.PUT_LINE('Nombre de la categorÌa: ' || v_categoria_nombre);
+    DBMS_OUTPUT.PUT_LINE('Nombre de la categor√≠a: ' || v_categoria_nombre);
 END;
 
 
@@ -1381,7 +1368,7 @@ END;
 
 BEGIN
     gestionar_categorias.agregar_categoria(p_nombre => 'Consolas');
-    DBMS_OUTPUT.PUT_LINE('CategorÌa "Consolas" agregada exitosamente.');
+    DBMS_OUTPUT.PUT_LINE('Categor√≠a "Consolas" agregada exitosamente.');
 END;
 SELECT * FROM categorias WHERE nombre = 'Consolas';
 
@@ -1390,8 +1377,8 @@ SELECT * FROM categorias WHERE nombre = 'Consolas';
 DECLARE
     v_categoria VARCHAR2(100);
 BEGIN
-    v_categoria := gestionar_categorias.obtener_categoria(2); -- Se pasa el ID de la categorÌa
-    DBMS_OUTPUT.PUT_LINE('CategorÌa: ' || v_categoria);  -- Mostrar el nombre de la categorÌa
+    v_categoria := gestionar_categorias.obtener_categoria(2); -- Se pasa el ID de la categor√≠a
+    DBMS_OUTPUT.PUT_LINE('Categor√≠a: ' || v_categoria);  -- Mostrar el nombre de la categor√≠a
 END;
 
 
@@ -1426,7 +1413,7 @@ CREATE OR REPLACE TRIGGER TRG_EMPLEADOS_AUDIT
 BEFORE UPDATE OF PUESTO, ID_TIENDA ON EMPLEADOS
 FOR EACH ROW
 BEGIN
-    -- Insertar los datos en la tabla de auditorÌa
+    -- Insertar los datos en la tabla de auditor√≠a
     INSERT INTO EMPLEADOS_AUDIT (
         ID_EMPLEADOS, 
         OLD_ID_TIENDA, 
@@ -1452,7 +1439,7 @@ SET ID_TIENDA = 2,
     PUESTO = 'Gerente'
 WHERE ID_EMPLEADOS = 101;
 
--- Verificar los datos en la tabla de auditorÌa
+-- Verificar los datos en la tabla de auditor√≠a
 SELECT * FROM EMPLEADOS_AUDIT;
 
 
@@ -1462,9 +1449,9 @@ FOR EACH ROW
 DECLARE
     v_tipo_evento VARCHAR2(10);
 BEGIN
-    -- Verifica si las columnas crÌticas han cambiado (en este caso EMAIL y TELEFONO)
+    -- Verifica si las columnas cr√≠ticas han cambiado (en este caso EMAIL y TELEFONO)
     IF :OLD.EMAIL != :NEW.EMAIL OR :OLD.TELEFONO != :NEW.TELEFONO THEN
-        -- Inserta un registro en la tabla de auditorÌa
+        -- Inserta un registro en la tabla de auditor√≠a
         INSERT INTO auditoria_datos_criticos (
             id_auditoria,
             tipo_evento,
@@ -1483,10 +1470,10 @@ BEGIN
             USER,                               -- Usuario de base de datos
             SYSDATE,                            -- Fecha y hora del evento
             SYS_CONTEXT('USERENV', 'OS_USER'),  -- Usuario del sistema operativo
-            SYS_CONTEXT('USERENV', 'IP_ADDRESS'), -- IP de la m·quina
-            SYS_CONTEXT('USERENV', 'HOST'),      -- Nombre de la m·quina
+            SYS_CONTEXT('USERENV', 'IP_ADDRESS'), -- IP de la m√°quina
+            SYS_CONTEXT('USERENV', 'HOST'),      -- Nombre de la m√°quina
             TO_CLOB(:OLD.EMAIL || ', ' || :OLD.TELEFONO),  -- Valores antes del cambio
-            TO_CLOB(:NEW.EMAIL || ', ' || :NEW.TELEFONO),  -- Valores despuÈs del cambio
+            TO_CLOB(:NEW.EMAIL || ', ' || :NEW.TELEFONO),  -- Valores despu√©s del cambio
             :NEW.ID_CLIENTE                     -- Clave primaria del registro afectado
         );
     END IF;
@@ -1499,7 +1486,7 @@ FOR EACH ROW
 DECLARE
     v_tipo_evento VARCHAR2(10);
 BEGIN
-    -- Si es una inserciÛn, se registra el nuevo valor
+    -- Si es una inserci√≥n, se registra el nuevo valor
     IF INSERTING THEN
         v_tipo_evento := 'INSERT';
         INSERT INTO historial_modificaciones (
@@ -1520,7 +1507,7 @@ BEGIN
             TO_CLOB(:NEW.ID_CLIENTE || ', ' || :NEW.NOMBRE || ', ' || :NEW.APELLIDO || ', ' || :NEW.EMAIL),  -- Los valores nuevos
             :NEW.ID_CLIENTE                             -- Clave primaria del registro afectado
         );
-    -- Si es una eliminaciÛn, se registra el valor antes de la eliminaciÛn
+    -- Si es una eliminaci√≥n, se registra el valor antes de la eliminaci√≥n
     ELSIF DELETING THEN
         v_tipo_evento := 'DELETE';
         INSERT INTO historial_modificaciones (
@@ -1567,7 +1554,7 @@ BEGIN
 END trg_limpieza_temporal;
 
 INSERT INTO procesos (id_proceso, nombre_proceso, descripcion)
-VALUES (1, 'An·lisis de datos', 'An·lisis de datos completado');
+VALUES (1, 'An√°lisis de datos', 'An√°lisis de datos completado');
 
 SELECT COUNT(*) FROM tabla_temporal_1;
 
@@ -1806,7 +1793,7 @@ CREATE OR REPLACE PROCEDURE modificar_categoria (
     p_nombre IN VARCHAR2
 ) AS
 BEGIN
-    -- Modificar el nombre de la categorÌa
+    -- Modificar el nombre de la categor√≠a
     UPDATE categorias
     SET nombre = p_nombre
     WHERE id_categoria = p_id_categoria;
@@ -1894,26 +1881,26 @@ INSERT INTO tiendas (nombre, direccion, ciudad)
 VALUES ('Tienda Sur', 'Calle 8, Zona 5', 'Ciudad C');
 
 INSERT INTO empleados (id_tienda, nombre, apellido, puesto) 
-VALUES (1, 'Carlos', 'LÛpez', 'Vendedor');
+VALUES (1, 'Carlos', 'L√≥pez', 'Vendedor');
 
 INSERT INTO empleados (id_tienda, nombre, apellido, puesto) 
-VALUES (2, 'Ana', 'MartÌnez', 'Gerente');
+VALUES (2, 'Ana', 'Mart√≠nez', 'Gerente');
 
 INSERT INTO empleados (id_tienda, nombre, apellido, puesto) 
-VALUES (3, 'Luis', 'RamÌrez', 'Cajero');
+VALUES (3, 'Luis', 'Ram√≠rez', 'Cajero');
 
 
 INSERT INTO clientes (nombre, apellido, email, telefono, direccion) 
-VALUES ('Juan', 'PÈrez', 'juanez@gmail.com', '888888876', 'Calle Falles ');
+VALUES ('Juan', 'P√©rez', 'juanez@gmail.com', '888888876', 'Calle Falles ');
 
 INSERT INTO clientes (nombre, apellido, email, telefono, direccion) 
-VALUES ('MarÌa', 'Gonz·lez', 'mariag@gmail.com', '888888875', 'Avenida Segunda ');
+VALUES ('Mar√≠a', 'Gonz√°lez', 'mariag@gmail.com', '888888875', 'Avenida Segunda ');
 
 INSERT INTO clientes (nombre, apellido, email, telefono, direccion) 
-VALUES ('Elena', 'Hern·ndez', 'elenahernandezgemail.com', '588888886', 'Calle Blancos ');
+VALUES ('Elena', 'Hern√°ndez', 'elenahernandezgemail.com', '588888886', 'Calle Blancos ');
 
 INSERT INTO categorias (nombre) 
-VALUES ('ElectrÛnica');
+VALUES ('Electr√≥nica');
 
 INSERT INTO categorias (nombre) 
 VALUES ('Hogar');
@@ -1924,13 +1911,13 @@ VALUES ('Ropa');
 
 
 INSERT INTO productos (id_categoria, id_proveedor, nombre, precio_producto, stock_producto, descripcion) 
-VALUES (1, 1, 'Celular', 500000, 20, 'Celular con c·mara de alta resoluciÛn');
+VALUES (1, 1, 'Celular', 500000, 20, 'Celular con c√°mara de alta resoluci√≥n');
 
 INSERT INTO productos (id_categoria, id_proveedor, nombre, precio_producto, stock_producto, descripcion) 
-VALUES (22, 2, 'Sof·', 600000, 20, 'Sof· de 3 plazas, cÛmodo y elegante');
+VALUES (22, 2, 'Sof√°', 600000, 20, 'Sof√° de 3 plazas, c√≥modo y elegante');
 
 INSERT INTO productos (id_categoria, id_proveedor, nombre, precio_producto, stock_producto, descripcion) 
-VALUES (23, 3, 'Chaqueta de invierno', 20000, 30, 'Chaqueta de abrigo para clima frÌo');
+VALUES (23, 3, 'Chaqueta de invierno', 20000, 30, 'Chaqueta de abrigo para clima fr√≠o');
 
 INSERT INTO inventarios (id_tienda, total_productos) 
 VALUES (1, 500);
@@ -1951,10 +1938,10 @@ INSERT INTO ventas (id_cliente, id_empleado, id_producto, id_tienda, fecha, cant
 VALUES (3, 3, 29, 3, TO_DATE('2024-01-20', 'YYYY-MM-DD'), 2, 40000);
 
 INSERT INTO proveedor (nombre, descripcion, ciudad, telefono) 
-VALUES ('Proveedor A', 'Proveedor de productos electrÛnicos', 'Ciudad A', '5551239876');
+VALUES ('Proveedor A', 'Proveedor de productos electr√≥nicos', 'Ciudad A', '5551239876');
 
 INSERT INTO proveedor (nombre, descripcion, ciudad, telefono) 
-VALUES ('Proveedor B', 'Proveedor de muebles y decoraciÛn', 'Ciudad B', '5556543210');
+VALUES ('Proveedor B', 'Proveedor de muebles y decoraci√≥n', 'Ciudad B', '5556543210');
 
 INSERT INTO proveedor (nombre, descripcion, ciudad, telefono) 
 VALUES ('Proveedor C', 'Proveedor de ropa y calzado', 'Ciudad C', '5557896543');
