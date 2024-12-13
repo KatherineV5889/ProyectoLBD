@@ -2,6 +2,7 @@
 CREATE OR REPLACE PACKAGE gestionar_productos AS
     PROCEDURE actualizar_precio(p_id_producto NUMBER, nuevo_precio NUMBER);
     CURSOR listar_productos_bajo_stock(p_stock_minimo NUMBER) RETURN productos%ROWTYPE;
+    FUNCTION calcular_valor_inventario(p_id_producto NUMBER) RETURN NUMBER;
 END gestionar_productos;
 
 CREATE OR REPLACE PACKAGE BODY gestionar_productos AS
@@ -16,6 +17,15 @@ CREATE OR REPLACE PACKAGE BODY gestionar_productos AS
         SELECT *
         FROM productos
         WHERE stock_producto < p_stock_minimo;
+
+    FUNCTION calcular_valor_inventario(p_id_producto NUMBER) RETURN NUMBER IS
+        v_valor NUMBER;
+    BEGIN
+        SELECT precio_producto * stock_producto INTO v_valor
+        FROM productos
+        WHERE id_producto = p_id_producto;
+        RETURN v_valor; 
+    END;
 END gestionar_productos;
 
 -- Paquete para gestionar clientes
