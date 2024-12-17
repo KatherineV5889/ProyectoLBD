@@ -8,24 +8,42 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ProveedorService {
-    
+
     @Autowired
     private ProveedorDao proveedorDao;
 
     public List<Proveedor> findAll() {
-        return proveedorDao.findAll();
-    }
-
-    public Proveedor findById(Long id) {
-        return proveedorDao.findById(id).orElse(null);
+        return proveedorDao.listarProveedores();
     }
 
     public void save(Proveedor proveedor) {
-        proveedorDao.save(proveedor);
+        if (proveedor.getIdProveedor() == null) {
+            proveedorDao.agregarProveedor(
+                proveedor.getNombre(),
+                proveedor.getDescripcion(),
+                proveedor.getCiudad(),
+                proveedor.getTelefono()
+            );
+        } else {
+            proveedorDao.modificarProveedor(
+                proveedor.getIdProveedor(),
+                proveedor.getNombre(),
+                proveedor.getDescripcion(),
+                proveedor.getCiudad(),
+                proveedor.getTelefono()
+            );
+        }
+    }
+
+    public Proveedor findById(Long id) {
+        List<Proveedor> proveedores = findAll();
+        return proveedores.stream()
+                .filter(p -> p.getIdProveedor().equals(id))
+                .findFirst()
+                .orElse(null);
     }
 
     public void eliminarProveedor(Long id) {
-        proveedorDao.deleteById(id);
+        proveedorDao.eliminarProveedor(id);
     }
-    
 }
