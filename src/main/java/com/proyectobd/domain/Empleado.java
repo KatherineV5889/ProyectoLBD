@@ -18,14 +18,20 @@ public class Empleado implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "id_tienda")
-    private Tienda tienda; 
+    private Tienda tienda;
 
+    @Column(name = "nombre")
     private String nombre;
+
+    @Column(name = "apellido")
     private String apellido;
+
+    @Column(name = "puesto")
     private String puesto;
 
     public Empleado() {
     }
+
 
     public Empleado(String nombre, String apellido, String puesto, Tienda tienda) {
         this.nombre = nombre;

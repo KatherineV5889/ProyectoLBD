@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Empleados</title>
-        <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
-    </head>
-    <body>
-    <head th:replace="layout/plantilla :: header">
+<head>
+    <title>Empleados</title>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+    <div th:replace="layout/plantilla :: header"></div>
     <div class="container mt-4">
         <h1>Listado de Empleados</h1>
         <a th:href="@{/empleado/agregar}" class="btn btn-primary mb-3">Agregar Empleado</a>
@@ -33,6 +33,6 @@
             </tbody>
         </table>
     </div>
-    <footer th:replace="layout/plantilla :: footer">
-    </body>
+    <div th:replace="layout/plantilla :: footer"></div>
+</body>
 </html>

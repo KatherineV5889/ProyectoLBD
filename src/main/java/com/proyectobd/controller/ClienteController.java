@@ -2,15 +2,12 @@ package com.proyectobd.controller;
 
 import com.proyectobd.domain.Cliente;
 import com.proyectobd.service.ClienteService;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/cliente")
@@ -21,39 +18,40 @@ public class ClienteController {
 
     @GetMapping
     public String listarClientes(Model model) {
-        List<Cliente> clientes = clienteService.findAll();
-        model.addAttribute("clientes", clientes);
-        return "cliente/cliente";
+        List<Cliente> clientes = clienteService.listarClientes();
+        model.addAttribute("clientes", clientes != null ? clientes : List.of());
+        return "cliente/cliente"; // Vista para listar clientes
     }
 
     @GetMapping("/agregar")
     public String mostrarFormularioAgregar(Model model) {
         Cliente nuevoCliente = new Cliente();
         model.addAttribute("cliente", nuevoCliente);
-        return "cliente/agregarCliente";
+        return "cliente/agregarCliente"; // Vista para agregar cliente
     }
 
     @GetMapping("/editar/{id}")
     public String editarCliente(@PathVariable("id") Long id, Model model) {
-        Cliente cliente = clienteService.findById(id);
+        Cliente cliente = clienteService.buscarPorId(id);
         model.addAttribute("cliente", cliente);
-        return "cliente/editarCliente";
+        return "cliente/editarCliente"; // Vista para editar cliente
     }
 
     @PostMapping("/guardar")
     public String guardarCliente(@ModelAttribute("cliente") Cliente cliente) {
-        clienteService.save(cliente);
+        if (cliente.getIdCliente() == null) {
+            clienteService.agregarCliente(cliente);
+        } else {
+            clienteService.modificarCliente(cliente);
+        }
         return "redirect:/cliente";
     }
 
-  @GetMapping("/eliminar/{id}")
-public String eliminarCliente(@PathVariable("id") Long id) {
-    clienteService.eliminarCliente(id);
-    return "redirect:/cliente"; 
-        
-        }
+    @GetMapping("/eliminar/{id}")
+    public String eliminarCliente(@PathVariable("id") Long id) {
+        clienteService.eliminarCliente(id);
+        return "redirect:/cliente";
+    }
 }
-
-
 
 

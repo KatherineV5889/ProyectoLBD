@@ -24,8 +24,11 @@
         <div class="form-group">
             <label for="tienda">Tienda</label>
             <select id="tienda" th:field="*{tienda.idTienda}" class="form-control">
-                <option th:each="tienda : ${tiendas}" th:value="${tienda.idTienda}" 
-                        th:text="${tienda.nombre}" th:checked="${empleado.tienda != null && empleado.tienda.idTienda == tienda.idTienda}"></option>
+                <option th:each="tiendaObj : ${tiendas}" 
+                        th:value="${tiendaObj.idTienda}" 
+                        th:text="${tiendaObj.nombre}" 
+                        th:selected="${empleado.tienda != null and empleado.tienda.idTienda == tiendaObj.idTienda}">
+                </option>
             </select>
         </div>
         <button type="submit" class="btn btn-primary mt-2">Guardar Cambios</button>

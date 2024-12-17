@@ -14,8 +14,12 @@
             <input type="text" id="nombre" th:field="*{nombre}" class="form-control" required/>
         </div>
         <div class="form-group">
+            <label for="idCategoria">ID Categoría</label>
+            <input type="number" id="idCategoria" th:field="*{idCategoria}" class="form-control" required/>
+        </div>
+        <div class="form-group">
             <label for="precioProducto">Precio</label>
-            <input type="number" id="precioProducto" th:field="*{precioProducto}" class="form-control" step="0.01" required/>
+            <input type="number" step="0.01" id="precioProducto" th:field="*{precioProducto}" class="form-control" required/>
         </div>
         <div class="form-group">
             <label for="stockProducto">Stock</label>
@@ -23,14 +27,11 @@
         </div>
         <div class="form-group">
             <label for="descripcion">Descripción</label>
-            <input type="text" id="descripcion" th:field="*{descripcion}" class="form-control" required/>
+            <input type="text" id="descripcion" th:field="*{descripcion}" class="form-control"/>
         </div>
         <div class="form-group">
-            <label for="categoria">Categoría</label>
-            <select id="categoria" th:field="*{categoria.idCategoria}" class="form-control">
-                <option th:each="categoria : ${categorias}" th:value="${categoria.idCategoria}" 
-                        th:text="${categoria.nombre}" th:checked="${producto.categoria != null && producto.categoria.idCategoria == categoria.idCategoria}"></option>
-            </select>
+            <label for="idProveedor">ID Proveedor</label>
+            <input type="number" id="idProveedor" th:field="*{idProveedor}" class="form-control" required/>
         </div>
         <button type="submit" class="btn btn-primary mt-2">Guardar Cambios</button>
         <a th:href="@{/producto}" class="btn btn-secondary mt-2">Cancelar</a>

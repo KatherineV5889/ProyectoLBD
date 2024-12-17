@@ -1,48 +1,38 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
-    <head th:replace="layout/plantilla :: head">     
-    </head>
-    <body>
-        <head th:replace="layout/plantilla :: header">
-            <div class="container mt-4">
-                <h1>Listado de Clientes</h1>
-                <div th:if="${not #lists.isEmpty(clientes)}">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Nombre</th>
-                                <th>Apellido</th>
-                                <th>Email</th>
-                                <th>Telefono</th>
-                                <th>Direccion</th> 
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr th:each="cliente : ${clientes}">
-                                <td th:text="${cliente.idCliente}"></td>
-                                <td th:text="${cliente.nombre}"></td>
-                                <td th:text="${cliente.apellido}"></td>
-                                <td th:text="${cliente.email}"></td>
-                                <td th:text="${cliente.telefono}"></td>
-                                <td th:text="${cliente.direccion}"></td>
-                                <td>
-                                    <a th:href="@{/cliente/editar/{id}(id=${cliente.idCliente})}" class="btn btn-warning">Editar</a>
-                                    <a th:href="@{/cliente/eliminar/{id}(id=${cliente.idCliente})}" class="btn btn-danger" onclick="return confirm('¿Estás seguro de eliminar este cliente?')">Eliminar</a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div th:if="${#lists.isEmpty(clientes)}">
-                    <p>No hay clientes disponibles.</p>
-                </div>
-                <a th:href="@{/cliente/agregar}" class="btn btn-primary">Agregar Cliente</a>
-            </div>
-            <footer th:replace="layout/plantilla :: footer">
-                </body>
-                </html>
-
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Clientes</title>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+<div class="container mt-4">
+    <h1>Listado de Clientes</h1>
+    <a th:href="@{/cliente/agregar}" class="btn btn-primary mb-3">Agregar Cliente</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th>Dirección</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="cliente : ${clientes}">
+                <td th:text="${cliente.nombre}"></td>
+                <td th:text="${cliente.apellido}"></td>
+                <td th:text="${cliente.email}"></td>
+                <td th:text="${cliente.telefono}"></td>
+                <td th:text="${cliente.direccion}"></td>
+                <td>
+                    <a th:href="@{/cliente/editar/{id}(id=${cliente.idCliente})}" class="btn btn-warning btn-sm">Editar</a>
+                    <a th:href="@{/cliente/eliminar/{id}(id=${cliente.idCliente})}" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
