@@ -1,16 +1,15 @@
 package com.proyectobd.domain;
 
 import jakarta.persistence.*;
-import java.io.Serializable;
-import java.util.Date;
 import lombok.Data;
+
+import java.io.Serializable;
+import java.sql.Date;
 
 @Data
 @Entity
 @Table(name = "ventas")
 public class Venta implements Serializable {
-
-    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,20 +32,14 @@ public class Venta implements Serializable {
     @JoinColumn(name = "id_tienda")
     private Tienda tienda;
 
+    @Column(name = "fecha")
     private Date fecha;
+
+    @Column(name = "cantidad")
     private Integer cantidad;
+
+    @Column(name = "total")
     private Double total;
 
-    public Venta() {
-    }
-
-    public Venta(Cliente cliente, Empleado empleado, Producto producto, Tienda tienda, Date fecha, Integer cantidad, Double total) {
-        this.cliente = cliente;
-        this.empleado = empleado;
-        this.producto = producto;
-        this.tienda = tienda;
-        this.fecha = fecha;
-        this.cantidad = cantidad;
-        this.total = total;
-    }
+    public Venta() {}
 }

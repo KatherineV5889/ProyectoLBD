@@ -19,32 +19,30 @@ public class ClienteController {
     @GetMapping
     public String listarClientes(Model model) {
         List<Cliente> clientes = clienteService.listarClientes();
-        model.addAttribute("clientes", clientes != null ? clientes : List.of());
-        return "cliente/cliente"; // Vista para listar clientes
+        model.addAttribute("clientes", clientes);
+        return "cliente/cliente";
     }
 
     @GetMapping("/agregar")
     public String mostrarFormularioAgregar(Model model) {
-        Cliente nuevoCliente = new Cliente();
-        model.addAttribute("cliente", nuevoCliente);
-        return "cliente/agregarCliente"; // Vista para agregar cliente
-    }
-
-    @GetMapping("/editar/{id}")
-    public String editarCliente(@PathVariable("id") Long id, Model model) {
-        Cliente cliente = clienteService.buscarPorId(id);
-        model.addAttribute("cliente", cliente);
-        return "cliente/editarCliente"; // Vista para editar cliente
+        model.addAttribute("cliente", new Cliente());
+        return "cliente/agregarCliente";
     }
 
     @PostMapping("/guardar")
     public String guardarCliente(@ModelAttribute("cliente") Cliente cliente) {
-        if (cliente.getIdCliente() == null) {
-            clienteService.agregarCliente(cliente);
-        } else {
-            clienteService.modificarCliente(cliente);
-        }
+        clienteService.guardarCliente(cliente);
         return "redirect:/cliente";
+    }
+
+    @GetMapping("/editar/{id}")
+    public String editarCliente(@PathVariable("id") Long id, Model model) {
+        Cliente cliente = clienteService.listarClientes().stream()
+                .filter(c -> c.getIdCliente().equals(id))
+                .findFirst()
+                .orElse(null);
+        model.addAttribute("cliente", cliente);
+        return "cliente/editarCliente";
     }
 
     @GetMapping("/eliminar/{id}")
@@ -53,5 +51,3 @@ public class ClienteController {
         return "redirect:/cliente";
     }
 }
-
-

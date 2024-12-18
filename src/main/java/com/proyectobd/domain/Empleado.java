@@ -1,15 +1,14 @@
 package com.proyectobd.domain;
 
 import jakarta.persistence.*;
-import java.io.Serializable;
 import lombok.Data;
+
+import java.io.Serializable;
 
 @Data
 @Entity
 @Table(name = "empleados")
 public class Empleado implements Serializable {
-
-    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,14 +28,5 @@ public class Empleado implements Serializable {
     @Column(name = "puesto")
     private String puesto;
 
-    public Empleado() {
-    }
-
-
-    public Empleado(String nombre, String apellido, String puesto, Tienda tienda) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.puesto = puesto;
-        this.tienda = tienda;
-    }
+    public Empleado() {}
 }

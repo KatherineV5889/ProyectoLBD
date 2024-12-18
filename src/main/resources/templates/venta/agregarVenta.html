@@ -1,68 +1,69 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layout/plantilla :: head"></head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Agregar Venta</title>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
 <body>
-    <header th:replace="layout/plantilla :: header"></header>
+    <div th:replace="layout/plantilla :: header"></div>
     <div class="container mt-4">
-        <h1 class="mb-4">Agregar Venta</h1>
-        <form th:action="@{/venta/guardar}" method="POST">
-            <div class="mb-3">
-                <label for="cliente" class="form-label">Cliente:</label>
-                <select name="idCliente" id="cliente" class="form-control" required>
-                    <option value="">Seleccione un cliente</option>
-                    <th:block th:each="cliente : ${clientes}">
-                        <option th:value="${cliente.idCliente}" th:text="${cliente.nombre}"></option>
-                    </th:block>
+        <h1>Agregar Venta</h1>
+        <form th:action="@{/venta/guardar}" th:object="${venta}" method="post">
+            <div class="form-group">
+                <label for="idCliente">Cliente</label>
+                <select id="idCliente" th:field="*{cliente.idCliente}" class="form-control" required>
+                    <option th:each="cliente : ${clientes}" 
+                            th:value="${cliente.idCliente}" 
+                            th:text="${cliente.nombre + ' ' + cliente.apellido}"></option>
                 </select>
             </div>
-            <div class="mb-3">
-                <label for="empleado" class="form-label">Empleado:</label>
-                <select name="idEmpleado" id="empleado" class="form-control" required>
-                    <option value="">Seleccione un empleado</option>
-                    <th:block th:each="empleado : ${empleados}">
-                        <option th:value="${empleado.idEmpleado}" th:text="${empleado.nombre}"></option>
-                    </th:block>
+
+            <div class="form-group">
+                <label for="idEmpleado">Empleado</label>
+                <select id="idEmpleado" th:field="*{empleado.idEmpleados}" class="form-control" required>
+                    <option th:each="empleado : ${empleados}" 
+                            th:value="${empleado.idEmpleados}" 
+                            th:text="${empleado.nombre + ' ' + empleado.apellido}"></option>
                 </select>
             </div>
-            <div class="mb-3">
-                <label for="producto" class="form-label">Producto:</label>
-                <select name="idProducto" id="producto" class="form-control" required>
-                    <option value="">Seleccione un producto</option>
-                    <th:block th:each="producto : ${productos}">
-                        <option th:value="${producto.idProducto}" th:text="${producto.nombre}"></option>
-                    </th:block>
+
+            <div class="form-group">
+                <label for="idProducto">Producto</label>
+                <select id="idProducto" th:field="*{producto.idProducto}" class="form-control" required>
+                    <option th:each="producto : ${productos}" 
+                            th:value="${producto.idProducto}" 
+                            th:text="${producto.nombre}"></option>
                 </select>
             </div>
-            <div class="mb-3">
-                <label for="tienda" class="form-label">Tienda:</label>
-                <select name="idTienda" id="tienda" class="form-control" required>
-                    <option value="">Seleccione una tienda</option>
-                    <th:block th:each="tienda : ${tiendas}">
-                        <option th:value="${tienda.idTienda}" th:text="${tienda.nombre}"></option>
-                    </th:block>
+
+            <div class="form-group">
+                <label for="idTienda">Tienda</label>
+                <select id="idTienda" th:field="*{tienda.idTienda}" class="form-control" required>
+                    <option th:each="tienda : ${tiendas}" 
+                            th:value="${tienda.idTienda}" 
+                            th:text="${tienda.nombre}"></option>
                 </select>
             </div>
-            <div class="mb-3">
-                <label for="fecha" class="form-label">Fecha:</label>
-                <input type="date" class="form-control" id="fecha" name="fecha" required>
+
+            <div class="form-group">
+                <label for="fecha">Fecha</label>
+                <input type="date" id="fecha" th:field="*{fecha}" class="form-control" required/>
             </div>
-            <div class="mb-3">
-                <label for="cantidad" class="form-label">Cantidad:</label>
-                <input type="number" class="form-control" id="cantidad" name="cantidad" required>
+
+            <div class="form-group">
+                <label for="cantidad">Cantidad</label>
+                <input type="number" id="cantidad" th:field="*{cantidad}" class="form-control" required/>
             </div>
-            <div class="mb-3">
-                <label for="total" class="form-label">Total:</label>
-                <input type="number" step="0.01" class="form-control" id="total" name="total" required>
+
+            <div class="form-group">
+                <label for="total">Total</label>
+                <input type="number" step="0.01" id="total" th:field="*{total}" class="form-control" required/>
             </div>
-            <button type="submit" class="btn btn-success">
-                <i class="fas fa-save"></i> Guardar
-            </button>
-            <a th:href="@{/venta}" class="btn btn-secondary">
-                <i class="fas fa-arrow-left"></i> Cancelar
-            </a>
+
+            <button type="submit" class="btn btn-primary mt-3">Guardar</button>
+            <a th:href="@{/venta}" class="btn btn-secondary mt-3">Cancelar</a>
         </form>
     </div>
-    <footer th:replace="layout/plantilla :: footer"></footer>
+    <div th:replace="layout/plantilla :: footer"></div>
 </body>
 </html>

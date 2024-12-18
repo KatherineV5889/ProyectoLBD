@@ -5,34 +5,42 @@
     <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
 </head>
 <body>
-<div class="container mt-4">
-    <h1>Listado de Clientes</h1>
-    <a th:href="@{/cliente/agregar}" class="btn btn-primary mb-3">Agregar Cliente</a>
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Email</th>
-                <th>Teléfono</th>
-                <th>Dirección</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="cliente : ${clientes}">
-                <td th:text="${cliente.nombre}"></td>
-                <td th:text="${cliente.apellido}"></td>
-                <td th:text="${cliente.email}"></td>
-                <td th:text="${cliente.telefono}"></td>
-                <td th:text="${cliente.direccion}"></td>
-                <td>
-                    <a th:href="@{/cliente/editar/{id}(id=${cliente.idCliente})}" class="btn btn-warning btn-sm">Editar</a>
-                    <a th:href="@{/cliente/eliminar/{id}(id=${cliente.idCliente})}" class="btn btn-danger btn-sm">Eliminar</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+    <!-- Header -->
+    <div th:replace="layout/plantilla :: header"></div>
+    
+    <!-- Contenido Principal -->
+    <div class="container mt-4">
+        <h1>Listado de Clientes</h1>
+        <a th:href="@{/cliente/agregar}" class="btn btn-primary mb-3">Agregar Cliente</a>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                    <th>Dirección</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="cliente : ${clientes}">
+                    <td th:text="${cliente.nombre}"></td>
+                    <td th:text="${cliente.apellido}"></td>
+                    <td th:text="${cliente.email}"></td>
+                    <td th:text="${cliente.telefono}"></td>
+                    <td th:text="${cliente.direccion}"></td>
+                    <td>
+                        <a th:href="@{/cliente/editar/{id}(id=${cliente.idCliente})}" class="btn btn-warning btn-sm">Editar</a>
+                        <a th:href="@{/cliente/eliminar/{id}(id=${cliente.idCliente})}" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a th:href="@{/}" class="btn btn-secondary mt-3">Volver a la Página Principal</a>
+    </div>
+    
+    
+    <div th:replace="layout/plantilla :: footer"></div>
 </body>
 </html>

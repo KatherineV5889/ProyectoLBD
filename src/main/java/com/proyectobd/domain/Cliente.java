@@ -1,15 +1,14 @@
 package com.proyectobd.domain;
 
 import jakarta.persistence.*;
-import java.io.Serializable;
 import lombok.Data;
+
+import java.io.Serializable;
 
 @Data
 @Entity
 @Table(name = "clientes")
 public class Cliente implements Serializable {
-    
-    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,15 +29,8 @@ public class Cliente implements Serializable {
 
     @Column(name = "direccion")
     private String direccion;
-    
-    public Cliente() {
-    }
 
-    public Cliente(String nombre, String apellido, String email, String telefono, String direccion) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.email = email;
-        this.telefono = telefono;
-        this.direccion = direccion;
-    }
+    public Cliente() {}
 }
+
+

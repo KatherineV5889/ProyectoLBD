@@ -5,33 +5,37 @@
     <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
 </head>
 <body>
-<div class="container mt-4">
-    <h1>Editar Cliente</h1>
-    <form th:action="@{/cliente/guardar}" th:object="${cliente}" method="post">
-        <input type="hidden" th:field="*{idCliente}"/>
-        <div class="form-group">
-            <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" th:field="*{nombre}" class="form-control" required/>
-        </div>
-        <div class="form-group">
-            <label for="apellido">Apellido</label>
-            <input type="text" id="apellido" th:field="*{apellido}" class="form-control" required/>
-        </div>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" th:field="*{email}" class="form-control" required/>
-        </div>
-        <div class="form-group">
-            <label for="telefono">Teléfono</label>
-            <input type="text" id="telefono" th:field="*{telefono}" class="form-control" required/>
-        </div>
-        <div class="form-group">
-            <label for="direccion">Dirección</label>
-            <input type="text" id="direccion" th:field="*{direccion}" class="form-control" required/>
-        </div>
-        <button type="submit" class="btn btn-primary mt-2">Guardar Cambios</button>
-        <a th:href="@{/cliente}" class="btn btn-secondary mt-2">Cancelar</a>
-    </form>
-</div>
+    <div th:replace="layout/plantilla :: header"></div>
+    <div class="container mt-4">
+        <h1>Editar Cliente</h1>
+        <form th:action="@{/cliente/guardar}" th:object="${cliente}" method="post">
+            <input type="hidden" th:field="*{idCliente}"/>
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" th:field="*{nombre}" class="form-control" required/>
+            </div>
+            <div class="form-group">
+                <label for="apellido">Apellido</label>
+                <input type="text" id="apellido" th:field="*{apellido}" class="form-control" required/>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" th:field="*{email}" class="form-control" required/>
+            </div>
+            <div class="form-group">
+                <label for="telefono">Teléfono</label>
+                <input type="text" id="telefono" th:field="*{telefono}" class="form-control" required/>
+            </div>
+            <div class="form-group">
+                <label for="direccion">Dirección</label>
+                <input type="text" id="direccion" th:field="*{direccion}" class="form-control" required/>
+            </div>
+            <button type="submit" class="btn btn-primary mt-2">Guardar Cambios</button>
+            <a th:href="@{/cliente}" class="btn btn-secondary mt-2">Cancelar</a>
+        </form>
+    </div>
+    <div th:replace="layout/plantilla :: footer"></div>
 </body>
 </html>
+
+
