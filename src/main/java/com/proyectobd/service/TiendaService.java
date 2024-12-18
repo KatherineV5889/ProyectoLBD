@@ -13,19 +13,26 @@ public class TiendaService {
     private TiendaDao tiendaDao;
 
     public List<Tienda> findAll() {
-        return tiendaDao.findAll();
-    }
-
-    public Tienda findById(Long id) {
-        return tiendaDao.findById(id).orElse(null);
+        return tiendaDao.listarTiendas();
     }
 
     public void save(Tienda tienda) {
-        tiendaDao.save(tienda);
+        if (tienda.getIdTienda() == null) {
+            tiendaDao.agregarTienda(tienda.getNombre(), tienda.getDireccion(), tienda.getCiudad());
+        } else {
+            tiendaDao.modificarTienda(tienda.getIdTienda(), tienda.getNombre(), tienda.getDireccion(), tienda.getCiudad());
+        }
+    }
+   
+    public Tienda findById(Long id) {
+        List<Tienda> tiendas = findAll();
+        return tiendas.stream()
+                .filter(t -> t.getIdTienda().equals(id))
+                .findFirst()
+                .orElse(null);
     }
 
     public void eliminarTienda(Long id) {
-        tiendaDao.deleteById(id);
-    }
-    
+        tiendaDao.eliminarTienda(id);
+    } 
 }
