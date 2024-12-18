@@ -1,39 +1,53 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Empleados</title>
+    <title>Agregar Empleado</title>
     <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
 </head>
 <body>
+    
     <div th:replace="layout/plantilla :: header"></div>
+
     <div class="container mt-4">
-        <h1>Listado de Empleados</h1>
-        <a th:href="@{/empleado/agregar}" class="btn btn-primary mb-3">Agregar Empleado</a>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Puesto</th>
-                    <th>Tienda</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="empleado : ${empleados}">
-                    <td th:text="${empleado.nombre}"></td>
-                    <td th:text="${empleado.apellido}"></td>
-                    <td th:text="${empleado.puesto}"></td>
-                    <td th:text="${empleado.tienda.nombre}"></td>
-                    <td>
-                        <a th:href="@{/empleado/editar/{id}(id=${empleado.idEmpleados})}" class="btn btn-warning btn-sm">Editar</a>
-                        <a th:href="@{/empleado/eliminar/{id}(id=${empleado.idEmpleados})}" class="btn btn-danger btn-sm">Eliminar</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        <a th:href="@{/}" class="btn btn-secondary mt-3">Volver a la Página Principal</a>
+        <h1>Agregar Empleado</h1>
+        <form th:action="@{/empleado/guardar}" th:object="${empleado}" method="post">
+            
+            
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" th:field="*{nombre}" class="form-control" required/>
+            </div>
+
+            
+            <div class="form-group">
+                <label for="apellido">Apellido</label>
+                <input type="text" id="apellido" th:field="*{apellido}" class="form-control" required/>
+            </div>
+
+            
+            <div class="form-group">
+                <label for="puesto">Puesto</label>
+                <input type="text" id="puesto" th:field="*{puesto}" class="form-control" required/>
+            </div>
+
+            
+            <div class="form-group">
+                <label for="idTienda">Tienda</label>
+                <select id="idTienda" th:field="*{tienda.idTienda}" class="form-control" required>
+                    <option value="">Seleccione una tienda</option>
+                    <option th:each="tienda : ${tiendas}" 
+                            th:value="${tienda.idTienda}" 
+                            th:text="'ID: ' + ${tienda.idTienda} + ' | ' + ${tienda.nombre}"></option>
+                </select>
+            </div>
+
+           
+            <button type="submit" class="btn btn-primary mt-3">Guardar</button>
+            <a th:href="@{/empleado}" class="btn btn-secondary mt-3">Cancelar</a>
+        </form>
     </div>
+
+    
     <div th:replace="layout/plantilla :: footer"></div>
 </body>
 </html>

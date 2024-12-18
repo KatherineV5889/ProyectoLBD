@@ -24,9 +24,7 @@ public class ProductoController {
     @Autowired
     private ProveedorService proveedorService;
 
-    /**
-     * Listar todos los productos
-     */
+    
     @GetMapping
     public String listarProductos(Model model) {
         List<Producto> productos = productoService.listarProductos();
@@ -34,9 +32,7 @@ public class ProductoController {
         return "producto/producto";
     }
 
-    /**
-     * Mostrar formulario para agregar un producto
-     */
+    
     @GetMapping("/agregar")
     public String mostrarFormularioAgregar(Model model) {
         model.addAttribute("producto", new Producto());
