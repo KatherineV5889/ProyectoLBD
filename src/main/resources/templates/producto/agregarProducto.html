@@ -5,38 +5,66 @@
     <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
 </head>
 <body>
+    <!-- Header -->
     <div th:replace="layout/plantilla :: header"></div>
-<div class="container mt-4">
-    <h1>Agregar Producto</h1>
-    <form th:action="@{/producto/guardar}" th:object="${producto}" method="post">
-        <div class="form-group">
-            <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" th:field="*{nombre}" class="form-control" required/>
-        </div>
-        <div class="form-group">
-            <label for="idCategoria">ID Categoría</label>
-            <input type="number" id="idCategoria" th:field="*{idCategoria}" class="form-control" required/>
-        </div>
-        <div class="form-group">
-            <label for="precioProducto">Precio</label>
-            <input type="number" step="0.01" id="precioProducto" th:field="*{precioProducto}" class="form-control" required/>
-        </div>
-        <div class="form-group">
-            <label for="stockProducto">Stock</label>
-            <input type="number" id="stockProducto" th:field="*{stockProducto}" class="form-control" required/>
-        </div>
-        <div class="form-group">
-            <label for="descripcion">Descripción</label>
-            <input type="text" id="descripcion" th:field="*{descripcion}" class="form-control"/>
-        </div>
-        <div class="form-group">
-            <label for="idProveedor">ID Proveedor</label>
-            <input type="number" id="idProveedor" th:field="*{idProveedor}" class="form-control" required/>
-        </div>
-        <button type="submit" class="btn btn-primary mt-2">Guardar</button>
-        <a th:href="@{/producto}" class="btn btn-secondary mt-2">Cancelar</a>
-    </form>
-</div>
+
+    <div class="container mt-4">
+        <h1>Agregar Producto</h1>
+        <form th:action="@{/producto/guardar}" th:object="${producto}" method="post">
+            
+            <!-- Nombre del Producto -->
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" th:field="*{nombre}" class="form-control" required/>
+            </div>
+
+            <!-- Seleccionar Categoría -->
+            <div class="form-group">
+                <label for="idCategoria">Categoría</label>
+                <select id="idCategoria" th:field="*{idCategoria}" class="form-control" required>
+                    <option value="">Seleccione una categoría</option>
+                    <option th:each="categoria : ${categorias}" 
+                            th:value="${categoria.idCategoria}" 
+                            th:text="'ID: ' + ${categoria.idCategoria} + ' | ' + ${categoria.nombre}"></option>
+                </select>
+            </div>
+
+            <!-- Precio -->
+            <div class="form-group">
+                <label for="precioProducto">Precio</label>
+                <input type="number" step="0.01" id="precioProducto" th:field="*{precioProducto}" class="form-control" required/>
+            </div>
+
+            <!-- Stock -->
+            <div class="form-group">
+                <label for="stockProducto">Stock</label>
+                <input type="number" id="stockProducto" th:field="*{stockProducto}" class="form-control" required/>
+            </div>
+
+            <!-- Descripción -->
+            <div class="form-group">
+                <label for="descripcion">Descripción</label>
+                <input type="text" id="descripcion" th:field="*{descripcion}" class="form-control"/>
+            </div>
+
+            <!-- Seleccionar Proveedor -->
+            <div class="form-group">
+                <label for="idProveedor">Proveedor</label>
+                <select id="idProveedor" th:field="*{idProveedor}" class="form-control" required>
+                    <option value="">Seleccione un proveedor</option>
+                    <option th:each="proveedor : ${proveedores}" 
+                            th:value="${proveedor.idProveedor}" 
+                            th:text="'ID: ' + ${proveedor.idProveedor} + ' | ' + ${proveedor.nombre}"></option>
+                </select>
+            </div>
+
+            <!-- Botones -->
+            <button type="submit" class="btn btn-primary mt-3">Guardar</button>
+            <a th:href="@{/producto}" class="btn btn-secondary mt-3">Cancelar</a>
+        </form>
+    </div>
+
+    <!-- Footer -->
     <div th:replace="layout/plantilla :: footer"></div>
 </body>
 </html>
