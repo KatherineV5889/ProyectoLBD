@@ -22,7 +22,6 @@ public class ProyectConfig implements WebMvcConfigurer {
         slr.setDefaultLocale(Locale.getDefault());
         slr.setLocaleAttributeName("session.current.locale");
         slr.setTimeZoneAttributeName("session.current.timezone");
-
         return slr;
     }
 

@@ -8,6 +8,7 @@
         <head th:replace="layout/plantilla :: header">
             <div class="container mt-4">
                 <h1>Tiendas</h1>
+                <a th:href="@{/tienda/agregar}" class="btn btn-primary">Agregar Tienda</a>
                 <div th:if="${not #lists.isEmpty(tiendas)}">
                     <table class="table">
                         <thead>
@@ -33,11 +34,12 @@
                             </tr>
                         </tbody>
                     </table>
+                    <a th:href="@{/}" class="btn btn-secondary mt-3">Volver a la Página Principal</a>
                 </div>
                 <div th:if="${#lists.isEmpty(tiendas)}">
                     <p>No hay tiendas creadas.</p>
                 </div>
-                <a th:href="@{/tienda/agregar}" class="btn btn-primary">Agregar Tienda</a>
+                
             </div>
         <footer th:replace="layout/plantilla :: footer">    
     </body>

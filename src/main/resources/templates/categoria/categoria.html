@@ -8,6 +8,7 @@
         <head th:replace="layout/plantilla :: header">
             <div class="container mt-4">
                 <h1>Listado de Categorías</h1>
+                <a th:href="@{/categoria/agregar}" class="btn btn-primary">Agregar Categoría</a>
                 <div th:if="${not #lists.isEmpty(categorias)}">
                     <table class="table">
                         <thead>
@@ -32,7 +33,7 @@
                 <div th:if="${#lists.isEmpty(categorias)}">
                     <p>No hay categorías disponibles.</p>
                 </div>
-                <a th:href="@{/categoria/agregar}" class="btn btn-primary">Agregar Categoría</a>
+                <a th:href="@{/}" class="btn btn-secondary mt-3">Volver a la Página Principal</a>
             </div>
     <footer th:replace="layout/plantilla :: footer">
     </body>
