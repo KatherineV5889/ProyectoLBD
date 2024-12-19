@@ -2131,6 +2131,24 @@ END;
 
 --Respaldo Base de datos--
 
+/*Se colocan aca los pasos mas sin embargo; se realizo en sql plus utilizando RMAN
 
+$ rman target /
+
+RMAN> BACKUP DATABASE PLUS ARCHIVELOG;
+
+Starting backup at 18-OCT-24
+
+Backup completed successfully
+
+RMAN> LIST BACKUP;
+
+List of Backup Sets
+
+
+RMAN> EXIT;
+
+RMAN> LIST BACKUP; esto para ver los backups
+*/
 
 
