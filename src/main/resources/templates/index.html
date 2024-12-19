@@ -8,42 +8,64 @@
     <body>
         <header th:replace="layout/plantilla :: header"></header>
 
-        <div class="container mt-4">
+        <div class="container mt-4 mb-5">
             <h1>Bienvenido al Sistema de Gestión</h1>
+            <div class="text-center my-4">
+                <img src="https://academia.nubimetrics.com/hs-fs/hubfs/productos-tecnologicos.jpg?width=2044&height=1364&name=productos-tecnologicos.jpg" 
+                     alt="Estrategias de marketing y ventas con tecnología" 
+                     class="img-fluid" 
+                     style="height: 300px; width: 100%; object-fit: cover;">
+            </div>
             <div class="row mt-4">
                 <div class="col-md-3">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body text-center">
                             <h5 class="card-title">Productos</h5>
-                            <p class="card-text">Gestiona el inventario de productos.</p>
-                            <a th:href="@{/producto}" class="btn btn-primary">Ir a Productos</a>
+                            <img src="https://thelogisticsworld.com/wp-content/uploads/2020/05/comercio-online-mcommerce.jpg" 
+                                 alt="Icono de productos" 
+                                 class="mb-3 img-fluid" 
+                                 style="max-height: 100px; object-fit: cover;">
+                                <p class="card-text">Gestiona el inventario de productos.</p>
+                                <a th:href="@{/producto}" class="btn btn-primary">Ir a Productos</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body text-center">
                             <h5 class="card-title">Ventas</h5>
-                            <p class="card-text">Registra y consulta ventas.</p>
-                            <a th:href="@{/venta}" class="btn btn-primary">Ir a Ventas</a>
+                            <img src="https://blog.qupos.com/hs-fs/hubfs/mejor-cierre-ventas-sistema-erp-1.png?width=1600&name=mejor-cierre-ventas-sistema-erp-1.png" 
+                                 alt="Icono de ventas" 
+                                 class="mb-3 img-fluid" 
+                                 style="max-height: 100px; object-fit: cover;">
+                                <p class="card-text">Registra y consulta ventas.</p>
+                                <a th:href="@{/venta}" class="btn btn-primary">Ir a Ventas</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body text-center">
                             <h5 class="card-title">Clientes</h5>
-                            <p class="card-text">Administra los clientes.</p>
-                            <a th:href="@{/cliente}" class="btn btn-primary">Ir a Clientes</a>
+                            <img src="https://rockcontent.com/es/wp-content/uploads/sites/3/2019/03/tipos-de-clientes-1024x538.png.webp" 
+                                 alt="Icono de clientes" 
+                                 class="mb-3 img-fluid" 
+                                 style="max-height: 100px; object-fit: cover;">
+                                <p class="card-text">Administra los clientes.</p>
+                                <a th:href="@{/cliente}" class="btn btn-primary">Ir a Clientes</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body text-center">
                             <h5 class="card-title">Empleados</h5>
-                            <p class="card-text">Administra los empleados.</p>
-                            <a th:href="@{/empleado}" class="btn btn-primary">Ir a Empleados</a>
+                            <img src="https://www.unir.net/wp-content/uploads/2021/02/shutterstock_1229268817.webp" 
+                                 alt="Icono de empleados" 
+                                 class="mb-3 img-fluid" 
+                                 style="max-height: 100px; object-fit: cover;">
+                                <p class="card-text">Administra los empleados.</p>
+                                <a th:href="@{/empleado}" class="btn btn-primary">Ir a Empleados</a>
                         </div>
                     </div>
                 </div>
@@ -51,53 +73,72 @@
             <div class="row mt-4">
                 <div class="col-md-3">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body text-center">
                             <h5 class="card-title">Inventarios</h5>
-                            <p class="card-text">Controla los niveles de inventario.</p>
-                            <a th:href="@{/inventario}" class="btn btn-primary">Ir a Inventarios</a>
+                            <img src="https://leasein.pe/wp-content/uploads/2023/09/Blog-2-_1_-1-scaled.webp" 
+                                 alt="Icono de inventarios" 
+                                 class="mb-3 img-fluid" 
+                                 style="max-height: 100px; object-fit: cover;">
+                                <p class="card-text">Controla los niveles de inventario.</p>
+                                <a th:href="@{/inventario}" class="btn btn-primary">Ir a Inventarios</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body text-center">
                             <h5 class="card-title">Tiendas</h5>
-                            <p class="card-text">Gestiona las tiendas físicas y online.</p>
-                            <a th:href="@{/tienda}" class="btn btn-primary">Ir a Tiendas</a>
+                            <img src="https://cdn0.uncomo.com/es/posts/9/8/6/como_ver_coordenadas_en_google_maps_39689_600.webp" 
+                                 alt="Icono de tiendas" 
+                                 class="mb-3 img-fluid" 
+                                 style="max-height: 100px; object-fit: cover;">
+                                <p class="card-text">Gestiona las tiendas físicas y online.</p>
+                                <a th:href="@{/tienda}" class="btn btn-primary">Ir a Tiendas</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body text-center">
                             <h5 class="card-title">Categorías</h5>
-                            <p class="card-text">Productos por categorías.</p>
-                            <a th:href="@{/categoria}" class="btn btn-primary">Ir a Categorías</a>
+                            <img src="https://www.lucushost.com/blog/wp-content/uploads/2019/06/a%C3%B1adir-categor%C3%ADas-en-WordPress.png" 
+                                 alt="Icono de categorías" 
+                                 class="mb-3 img-fluid" 
+                                 style="max-height: 100px; object-fit: cover;">
+                                <p class="card-text">Productos por categorías.</p>
+                                <a th:href="@{/categoria}" class="btn btn-primary">Ir a Categorías</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body text-center">
                             <h5 class="card-title">Pedidos</h5>
-                            <p class="card-text">Consulta y administra pedidos.</p>
-                            <a th:href="@{/pedido}" class="btn btn-primary">Ir a Pedidos</a>
+                            <img src="https://img.freepik.com/vector-premium/mensajero-dibujos-animados-masculino-que-entrega-carta-paquete-hombre-sonriente-uniforme-correo-o-pedido-ilustracion-vectorial-plana-concepto-servicio-entrega-banner-diseno-sitios-web-o-pagina-web-destino_179970-6391.jpg?w=996" 
+                                 alt="Icono de pedidos" 
+                                 class="mb-3 img-fluid" 
+                                 style="max-height: 100px; object-fit: cover;">
+                                <p class="card-text">Consulta y administra pedidos.</p>
+                                <a th:href="@{/pedido}" class="btn btn-primary">Ir a Pedidos</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">Proveedores</h5>
+                                <img src="https://media.licdn.com/dms/image/v2/D4E12AQGK1IGWILt8Sg/article-cover_image-shrink_423_752/article-cover_image-shrink_423_752/0/1671460138338?e=1740009600&v=beta&t=N9dSusauck16O0572FsfND7kohjgBK6cX3kZXFak13s" 
+                                     alt="Icono de proveedores" 
+                                     class="mb-3 img-fluid" 
+                                     style="max-height: 100px; object-fit: cover;">
+                                    <p class="card-text">Gestiona la lista de proveedores.</p>
+                                    <a th:href="@{/proveedor}" class="btn btn-primary">Ir a Proveedores</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row mt-4">
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Proveedores</h5>
-                            <p class="card-text">Gestiona la lista de proveedores.</p>
-                            <a th:href="@{/proveedor}" class="btn btn-primary">Ir a Proveedores</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <footer th:replace="layout/plantilla :: footer"></footer>
+            <footer th:replace="layout/plantilla :: footer"></footer>
     </body>
 </html>
