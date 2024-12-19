@@ -1,36 +1,44 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
     <title>Editar Pedido</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
 </head>
 <body>
-    <div class="container mt-5">
-        <h1 class="text-center">Editar Pedido</h1>
-        <form th:action="@{/pedido/guardar}" method="post" class="mt-4">
-            <input type="hidden" name="idPedido" th:value="${pedido.idPedido}">
-
-            <div class="mb-3">
-                <label for="idProveedor" class="form-label">ID Proveedor</label>
-                <input type="number" class="form-control" id="proveedor" name="proveedor" th:value="${pedido.proveedor}" required>
-
-                <label for="fechaPedido" class="form-label">Fecha de Pedido</label>
-                <input type="date" class="form-control" id="fechaPedido" name="fechaPedido" th:value="${pedido.fechaPedido}" required>
-
-                <label for="total_unidades" class="form-label">Total</label>
-                <input type="number" class="form-control" id="total_unidades" name="total_unidades" th:value="${pedido.total_unidades}" required>
-
-                <label for="idProducto" class="form-label">ID Producto</label>
-                <input type="number" class="form-control" id="producto" name="producto" th:value="${pedido.producto}" required>
-                
-                <label for="idTienda" class="form-label">ID Tienda</label>
-                <input type="number" class="form-control" id="tienda" name="tienda" th:value="${pedido.tienda}" required>
-                
+    <div th:replace="layout/plantilla :: header"></div>
+    <div class="container mt-4">
+        <h1>Editar Pedido</h1>
+        <form th:action="@{/pedido/guardar}" th:object="${pedido}" method="post">
+            <div class="form-group">
+                <label for="proveedor">Proveedor</label>
+                <select id="proveedor" th:field="*{idProveedor}" class="form-control">
+                    <option th:each="proveedor : ${proveedores}" th:value="${proveedor.idProveedor}" th:text="${proveedor.nombre}"></option>
+                </select>
             </div>
-            <button type="submit" class="btn btn-success">Actualizar</button>
-            <a href="/pedido" class="btn btn-secondary">Cancelar</a>
+            <div class="form-group">
+                <label for="fechaPedido">Fecha</label>
+                <input type="date" id="fechaPedido" th:field="*{fechaPedido}" class="form-control" required/>
+            </div>
+            <div class="form-group">
+                <label for="totalUnidades">Total Unidades</label>
+                <input type="number" id="totalUnidades" th:field="*{totalUnidades}" class="form-control" required/>
+            </div>
+            <div class="form-group">
+                <label for="producto">Producto</label>
+                <select id="producto" th:field="*{idProducto}" class="form-control">
+                    <option th:each="producto : ${productos}" th:value="${producto.idProducto}" th:text="${producto.nombre}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tienda">Tienda</label>
+                <select id="tienda" th:field="*{idTienda}" class="form-control">
+                    <option th:each="tienda : ${tiendas}" th:value="${tienda.idTienda}" th:text="${tienda.nombre}"></option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary mt-2">Guardar</button>
+            <a th:href="@{/pedido}" class="btn btn-secondary mt-2">Cancelar</a>
         </form>
     </div>
+    <div th:replace="layout/plantilla :: footer"></div>
 </body>
 </html>

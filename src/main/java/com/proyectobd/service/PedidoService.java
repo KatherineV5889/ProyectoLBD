@@ -2,29 +2,30 @@ package com.proyectobd.service;
 
 import com.proyectobd.dao.PedidoDao;
 import com.proyectobd.domain.Pedido;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PedidoService {
-    
+
     @Autowired
     private PedidoDao pedidoDao;
 
-    public List<Pedido> findAll() {
-        return pedidoDao.findAll();
+    public List<Pedido> listarPedidos() {
+        return pedidoDao.listarPedidos();
     }
 
-    public Pedido findById(Long id) {
-        return pedidoDao.findById(id).orElse(null);
+    public void guardarPedido(Pedido pedido) {
+        if (pedido.getIdPedido() == null) {
+            pedidoDao.agregarPedido(pedido);
+        } else {
+            pedidoDao.modificarPedido(pedido);
+        }
     }
 
-    public void save(Pedido pedido) {
-        pedidoDao.save(pedido);
-    }
-
-    public void eliminarPedido(Long id) {
-        pedidoDao.deleteById(id);
+    public void eliminarPedido(Long idPedido) {
+        pedidoDao.eliminarPedido(idPedido);
     }
 }

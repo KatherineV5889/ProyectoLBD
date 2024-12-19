@@ -41,18 +41,14 @@ public class ProductoController {
         return "producto/agregarProducto";
     }
 
-    /**
-     * Guardar un producto (nuevo o editado)
-     */
+ 
     @PostMapping("/guardar")
     public String guardarProducto(@ModelAttribute("producto") Producto producto) {
         productoService.guardarProducto(producto);
         return "redirect:/producto";
     }
 
-    /**
-     * Mostrar formulario para editar un producto
-     */
+    
     @GetMapping("/editar/{id}")
     public String editarProducto(@PathVariable("id") Long id, Model model) {
         Producto producto = productoService.listarProductos().stream()
@@ -70,9 +66,7 @@ public class ProductoController {
         return "producto/editarProducto";
     }
 
-    /**
-     * Eliminar un producto
-     */
+   
     @GetMapping("/eliminar/{id}")
     public String eliminarProducto(@PathVariable("id") Long id) {
         productoService.eliminarProducto(id);

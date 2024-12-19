@@ -1,46 +1,43 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
-    <head th:replace="layout/plantilla :: head">     
-    </head>
-    <body>
-        <head th:replace="layout/plantilla :: header">
-            <div class="container mt-4">
-                <h1>Pedidos</h1>
-                <div th:if="${not #lists.isEmpty(pedidos)}">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>ID Proveedor</th>
-                                 <th>Fecha de pedido</th>
-                                  <th>Total</th>
-                                <th>ID de productos</th>
-                                
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr th:each="pedido : ${pedidos}">
-                                <td th:text="${pedido.idPedido}"></td>
-                                <td th:text="${pedido.idProveedor}"></td>
-                                <td th:text="${#dates.format(pedido.fecha_pedido, 'yyyy-MM-dd'}"></td>
-                                <td th:text="${pedido.total_unidades}"></td>
-                                <td th:text="${pedido.idProducto}"></td>
-                                <td th:text="${pedido.idTienda}"></td>
-                                <td>
-                                    <a th:href="@{/pedido/editar/{id}(id=${pedido.idPedido})}" class="btn btn-warning">Editar</a>
-                                    <a th:href="@{/pedido/eliminar/{id}(id=${pedido.idPedido})}" class="btn btn-danger" onclick="return confirm('¿Estás seguro de eliminar este pedido?')">Eliminar</a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div th:if="${#lists.isEmpty(pedidos)}">
-                    <p>No hay pedidos.</p>
-                </div>
-                <a th:href="@{/pedido/agregar}" class="btn btn-primary">Agregar Pedido</a>
-            </div>
-        <footer th:replace="layout/plantilla :: footer">    
-    </body>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Pedidos</title>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+    <div th:replace="layout/plantilla :: header"></div>
+    <div class="container mt-4">
+        <h1>Listado de Pedidos</h1>
+        <a th:href="@{/pedido/agregar}" class="btn btn-primary mb-3">Agregar Pedido</a>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID Pedido</th>
+                    <th>Proveedor</th>
+                    <th>Fecha</th>
+                    <th>Total Unidades</th>
+                    <th>Producto</th>
+                    <th>Tienda</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="pedido : ${pedidos}">
+                    <td th:text="${pedido.idPedido}"></td>
+                    <td th:text="${pedido.idProveedor}"></td>
+                    <td th:text="${#dates.format(pedido.fechaPedido, 'yyyy-MM-dd')}"></td>
+                    <td th:text="${pedido.totalUnidades}"></td>
+                    <td th:text="${pedido.idProducto}"></td>
+                    <td th:text="${pedido.idTienda}"></td>
+                    <td>
+                        <a th:href="@{/pedido/editar/{id}(id=${pedido.idPedido})}" class="btn btn-warning btn-sm">Editar</a>
+                        <a th:href="@{/pedido/eliminar/{id}(id=${pedido.idPedido})}" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a th:href="@{/}" class="btn btn-secondary mt-3">Volver a la Página Principal</a>
+    </div>
+    <div th:replace="layout/plantilla :: footer"></div>
+</body>
 </html>
